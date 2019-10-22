@@ -35,7 +35,8 @@
               <div class="text-center">
                 <h1 class="h4 text-gray-900 mb-4">NEW MEMBER!</h1>
                 <h1 class="h4 text-gray-900 mb-4">Create  Account!</h1>
-                <h3 class="h4 text-gray-900 mb-4">{{error_message}}</h3>                 
+                <h3 class="h4 text-gray-900 mb-4">{{error_message}}</h3> 
+                <h3 class="h4 text-gray-900 mb-4">{{error_text}}</h3>                 
               </div>
               <form class="user" method="post" action="/events/do_register">
                 {% csrf_token %}

@@ -4,11 +4,15 @@ from django.contrib import auth
 from django.http import HttpResponseRedirect
 from django.http import HttpResponse
 from django.contrib.auth import get_user_model
-from django.views.generic import ListView, DetailView 
-from django.views.generic.edit import CreateView, UpdateView, DeleteView
-# from .models import events
-from events.models import Events
-from django.urls import reverse_lazy
+from django.contrib.auth.models import User
+
+
+# from models import User
+# from django.views.generic import ListView, DetailView 
+# from django.views.generic.edit import CreateView, UpdateView, DeleteView
+# # from .models import events
+# from events.models import Events
+# from django.urls import reverse_lazy
 
 
 
@@ -21,7 +25,9 @@ def index(request):
     return render(request, 'events/login.html')
  
 def forgotpassword(request):
-    return render(request, 'events/forgotpassword.html')  
+    return render(request, 'events/forgotpassword.html') 
+
+     
 def dashboard(request):
     return render(request, 'events/dashboard.html')
 def register(request):
@@ -29,7 +35,8 @@ def register(request):
 
 def login(request):
     return render(request, 'events/login.html')
-
+def logout(request):
+    return render(request, 'events/login.html')
 def createEvents(request):
     return render(request, 'events/createEvents.html')
 def movies(request):
@@ -62,19 +69,20 @@ def do_register(request):
     request_method = request.method
     print('request_method = ' + request_method)
     if request_method == 'POST':
-        user_name = request.POST.get('user_name', '')
-        user_password = request.POST.get('user_password', '')
-        user_email = request.POST.get('user_email', '')
+        user_name = request.POST.get('user_name')
+        user_password = request.POST.get('user_password')
+        user_email = request.POST.get('user_email')
         if len(user_name) > 0 and len(user_password) > 0 and len(user_email) > 0:
             # check whether user account exist or not.
-            user = auth.authenticate(request, username=user_name, password=user_password)
-            # if user account do not exist.
-            if user is None:
-                # create user account and return the user object.
+
+            if User.objects.filter(username=user_name).exists():
+                error_json = {'error_text': 'User account exist, please register another one.'}
+                return render(request, 'events/register.html', error_json)
+            else:    
                 user = get_user_model().objects.create_user(username=user_name, password=user_password, email=user_email)
                 # update user object staff field value and save to db.
                 if user is not None:
-                    user.is_staff = True
+                    # user.is_staff = True
                     # save user properties in sqlite auth_user table.
                     user.save()
                 # redirect web page to register success page.
@@ -84,38 +92,103 @@ def do_register(request):
                 request.session['user_password'] = user_password
                 request.session['user_email'] = user_email
                 return response
-            else:
-                error_json = {'error_message': 'User account exist, please register another one.'}
-                return render(request, 'events/register.html', error_json)
+            
+                 
+            # if user account do not exist.
+            # if user is None:
+            #     # create user account and return the user object.
+            #     user = get_user_model().objects.create_user(username=user_name, password=user_password, email=user_email)
+            #     # update user object staff field value and save to db.
+            #     if user is not None:
+            #         # user.is_staff = True
+            #         # save user properties in sqlite auth_user table.
+            #         user.save()
+            #     # redirect web page to register success page.
+            #     response = HttpResponseRedirect('/events/login')
+            #     # set user name, pasword and email value in session.
+            #     request.session['user_name'] = user_name
+            #     request.session['user_password'] = user_password
+            #     request.session['user_email'] = user_email
+            #     return response
+            # else:
+            #     error_json = {'error_text': 'User account exist, please register another one.'}
+            #     return render(request, 'events/register.html', error_json)
         else:
             error_json = {'error_message': 'User name, password and email can not be empty.'}
             return render(request, 'events/register.html', error_json)
     else:
         return render(request, 'events/register.html')
 
+def logout(request):
+    if request.method == "POST":
+        logout(request)
+
+        return redirect('events/login.html')
 
 
-class EventList(ListView):
-    model = Event
 
-class EventView(DetailView):
-    model = Event
 
-class EventCreate(CreateView):
-    model = Event
-    fields = ['event_title', 'event_type', 'event_location', 
-    'event_description', 'event_start_date','event_start_time','event_end_date','event_end_time']
-    success_url = reverse_lazy('event_list')
 
-class EventUpdate(UpdateView):
-    model = Event
-    fields = ['event_title', 'event_type', 'event_location', 
-    'event_description', 'event_start_date','event_start_time','event_end_date','event_end_time']
-    success_url = reverse_lazy('event_list')
-   # we use reverse_lazy as the urls are not loaded when the file is imported.
-class EventDelete(DeleteView):
-    model = Event
-    success_url = reverse_lazy('event_list')
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# class EventList(ListView):
+#     model = Event
+
+# class EventView(DetailView):
+#     model = Event
+
+# class EventCreate(CreateView):
+#     model = Event
+#     fields = ['event_title', 'event_type', 'event_location', 
+#     'event_description', 'event_start_date','event_start_time','event_end_date','event_end_time']
+#     success_url = reverse_lazy('event_list')
+
+# class EventUpdate(UpdateView):
+#     model = Event
+#     fields = ['event_title', 'event_type', 'event_location', 
+#     'event_description', 'event_start_date','event_start_time','event_end_date','event_end_time']
+#     success_url = reverse_lazy('event_list')
+#    # we use reverse_lazy as the urls are not loaded when the file is imported.
+# class EventDelete(DeleteView):
+#     model = Event
+#     success_url = reverse_lazy('event_list')
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 # def createEvent(request):
 #     # dec vars
 #     event_title = str(request.POST['event-title']).title()
