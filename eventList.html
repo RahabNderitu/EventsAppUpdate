@@ -1,0 +1,40 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+<h1>Events</h1>
+
+<table>
+<thead>
+<tr>
+<th>Event Name</th>
+<th>Event Type</th>
+<th>Event Location</th>
+<th>Event Description</th>
+<th>Event Date</th>
+</tr>
+</thead>
+<tbody>
+{% for events in object_list %}
+<tr>
+<td>{{ events.name }}</td>
+<td>{{ events.type }}</td>
+<td>{{ events.location }}</td>
+<td>{{ events.description }}</td>
+<td>{{ events.date }}</td>
+
+<td>
+<a  href="{% url "eventDetails"  events.id  %}">eventDetails</a>
+<a  href="{% url "editEvents"  events.id  %}">editEvents</a>
+<a  href="{% url "deleteEvents"  events.id  %}">deleteEvents</a>
+</td>
+</tr>
+
+{% endfor %}
+</tbody>
+</table>
+</body>
+</html>

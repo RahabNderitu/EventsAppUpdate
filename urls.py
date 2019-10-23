@@ -1,24 +1,27 @@
-from django.urls import path
-from django.conf.urls import url
-# from . import views
+"""eventsapp URL Configuration
+
+The `urlpatterns` list routes URLs to views. For more information please see:
+    https://docs.djangoproject.com/en/2.2/topics/http/urls/
+Examples:
+Function views
+    1. Add an import:  from my_app import views
+    2. Add a URL to urlpatterns:  path('', views.home, name='home')
+Class-based views
+    1. Add an import:  from other_app.views import Home
+    2. Add a URL to urlpatterns:  path('', Home.as_view(), name='home')
+Including another URLconf
+    1. Import the include() function: from django.urls import include, path
+    2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
+"""
+from django.contrib import admin
+from django.urls import include, path
 
 
-app_name = 'events'
 urlpatterns = [
-    path('', views.index, name='index'),
-    path('', views.EventList.as_view(), name='event_list'),
-    path('register', views.register, name='register'),
-    path('dashboard', views.dashboard, name='dashboard'),
-    path('forgotpassword', views.forgotpassword, name='forgotpassword'),
-    path('login', views.login, name='login'),
-    path('do_login', views.do_login, name='do_login'),
-    path('do_register', views.do_register, name='do_register'),
-    path('createEvents', views.createEvents, name='createEvents'),
-    path('movies', views.movies, name='movies'),
-    path('events', views.events, name='events'),
-    path('view/<int:pk>', views.EventView.as_view(), name='event_view'),
-    path('new', views.EventCreate.as_view(), name='event_new'),
-    path('edit/<int:pk>', views.EventUpdate.as_view(), name='event_edit'),
-    path('delete/<int:pk>', views.EventDelete.as_view(), name='event_delete'),
-    # as_view() provides a function-like entry to class-based views
-    ]
+    path('events/', include('events.urls')),
+    path('admin/', admin.site.urls),
+    path('/', include('django.contrib.auth.urls')),
+    
+    
+  
+]

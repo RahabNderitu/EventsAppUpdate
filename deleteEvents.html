@@ -1,0 +1,16 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Delete Events</title>
+</head>
+<body>
+
+</body>
+</html>
+<h1>Delete Events</h1>  
+ <form method="post">  
+    {% csrf_token %}  
+    Are you sure you want to delete "{{ object }}" ?  
+    <input type="submit" value="Submit" />  
+ </form>  
