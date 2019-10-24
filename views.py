@@ -13,7 +13,7 @@ from django.views.generic.edit import CreateView, UpdateView, DeleteView
 # from .models import events
 from events.models import Events
 from django.urls import reverse_lazy
-
+from .forms import EventsForm
 
 
 # Create your views here.
@@ -50,8 +50,21 @@ def updateEvents(request):
 def deleteEvents(request):
     return render(request, 'events/deleteEvents.html')  
 def eventList(request):
-    return render(request, 'events/eventList.html')        
+    all_objects= Events.objects.all()
+    context= {'all_objects': all_objects}
 
+    return render(request, 'events/eventList.html',context)        
+
+def showform(request):
+    form= EventsForm(request.POST)
+    if form.is_valid():
+        form.save()
+  
+    context= {'form': form }
+        
+    return render(request, 'events/createEvents.html', context)
+# None is so that it doesn't raise validation errors before a user has pressed the submit button and post so
+ # that it retains the data that a user enters into the form after the submit button is pressed
 def do_login(request):
     request_method = request.method
     print('request_method = ' + request_method)
@@ -111,34 +124,34 @@ def logout(request):
     return render(request,'events/login.html')
     
 
-class EventList(ListView):
-    model = Events
+# class EventList(ListView):
+#     model = Events
 
-    def get_context_data(self, **kwargs):
-        # Call the base implementation first to get a context
-        context = super().get_context_data(**kwargs)
-        # Add in a QuerySet of all the books
-        context['eventList'] = Events.objects.all()
-        return context
+#     def get_context_data(self, **kwargs):
+#         # Call the base implementation first to get a context
+#         context = super().get_context_data(**kwargs)
+#         # Add in a QuerySet of all the events
+#         context['eventList'] = Events.objects.all()
+#         return context
 
-class EventView(DetailView):
-    model = Events
+# class EventView(DetailView):
+#     model = Events
 
-class CreateEvents(CreateView):
-    model = Events
-    fields = ['event_title', 'event_type', 'event_location', 
-    'event_description', 'event_start_date','event_start_time','event_end_date','event_end_time']
-    success_url = reverse_lazy('eventList')
+# class CreateEvents(CreateView):
+#     model = Events
+#     fields = ['event_title', 'event_type', 'event_location', 
+#     'event_description', 'event_start_date','event_start_time','event_end_date','event_end_time']
+#     success_url = reverse_lazy('eventList')
 
-class UpdateEvents(UpdateView):
-    model = Events
-    fields = ['event_title', 'event_type', 'event_location', 
-    'event_description', 'event_start_date','event_start_time','event_end_date','event_end_time']
-    success_url = reverse_lazy('eventList')
+# class UpdateEvents(UpdateView):
+#     model = Events
+#     fields = ['event_title', 'event_type', 'event_location', 
+#     'event_description', 'event_start_date','event_start_time','event_end_date','event_end_time']
+#     success_url = reverse_lazy('eventList')
    # we use reverse_lazy to prevent occurrence of an error when url is not loaded.
-class DeleteEvents(DeleteView):
-    model = Events
-    success_url = reverse_lazy('eventList')
+# class DeleteEvents(DeleteView):
+#     model = Events
+#     success_url = reverse_lazy('eventList')
 
 
 

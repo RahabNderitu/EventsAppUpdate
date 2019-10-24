@@ -1,27 +1,30 @@
-"""eventsapp URL Configuration
-
-The `urlpatterns` list routes URLs to views. For more information please see:
-    https://docs.djangoproject.com/en/2.2/topics/http/urls/
-Examples:
-Function views
-    1. Add an import:  from my_app import views
-    2. Add a URL to urlpatterns:  path('', views.home, name='home')
-Class-based views
-    1. Add an import:  from other_app.views import Home
-    2. Add a URL to urlpatterns:  path('', Home.as_view(), name='home')
-Including another URLconf
-    1. Import the include() function: from django.urls import include, path
-    2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
-"""
-from django.contrib import admin
-from django.urls import include, path
+from django.urls import path
+from django.conf.urls import url
+from . import views
 
 
+
+app_name = 'events'
 urlpatterns = [
-    path('events/', include('events.urls')),
-    path('admin/', admin.site.urls),
-    path('/', include('django.contrib.auth.urls')),
-    
-    
-  
-]
+    path('', views.index, name='index'),
+    path('register', views.register, name='register'),
+    path('dashboard', views.dashboard, name='dashboard'),
+    path('forgotpassword', views.forgotpassword, name='forgotpassword'),
+    path('login', views.login, name='login'),
+    path('do_login', views.do_login, name='do_login'),
+    path('do_register', views.do_register, name='do_register'),
+    path('createEvents', views.createEvents, name='createEvents'),
+    path('movies', views.movies, name='movies'),
+    path('events', views.events, name='events'),
+    path("logout", views.logout, name="logout"),
+
+    path('eventList', views.eventList, name='eventList'),
+    path('forms', views.showform, name='forms'),
+    # path('eventView', views.EventView.as_view(), name='eventView'),
+    # path('eventView/<int:pk>', views.EventView.as_view(), name='eventView'),
+    # path('createEvents', views.CreateEvents.as_view(), name='createEvents'),
+    # path('new', views.EventCreate.as_view(), name='event_new'),
+    # path('editEvents', views.UpdateEvents.as_view(), name='editEvents'),
+    # path('deleteEvents', views.DeleteEvents.as_view(), name='deleteEvents'),
+    # as_view() provides a function-like entry to class-based views
+    ]

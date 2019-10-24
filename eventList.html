@@ -7,29 +7,34 @@
 <body>
 <h1>Events</h1>
 
-<table>
+<table cellspacing="20">
 <thead>
 <tr>
 <th>Event Name</th>
 <th>Event Type</th>
 <th>Event Location</th>
 <th>Event Description</th>
-<th>Event Date</th>
+<th>Event Start Time</th>
+<th>Event End Time</th>
+<th>Event Action</th>
 </tr>
 </thead>
 <tbody>
-{% for events in object_list %}
+{% for events in all_objects %} 
+ 
 <tr>
-<td>{{ events.name }}</td>
-<td>{{ events.type }}</td>
-<td>{{ events.location }}</td>
-<td>{{ events.description }}</td>
-<td>{{ events.date }}</td>
+<td>{{ events.event_title }}</td>
+<td>{{ events.event_type }}</td>
+<td>{{ events.event_location }}</td>
+<td>{{ events.event_description }}</td>
+<td>{{ events.event_start_time }}</td>
+<td>{{ events.event_end_time }}</td>
 
 <td>
-<a  href="{% url "eventDetails"  events.id  %}">eventDetails</a>
-<a  href="{% url "editEvents"  events.id  %}">editEvents</a>
-<a  href="{% url "deleteEvents"  events.id  %}">deleteEvents</a>
+	
+<a  href="#">eventDetails</a>
+<a  href="#">editEvents</a>
+<a  href="#">deleteEvents</a>
 </td>
 </tr>
 
