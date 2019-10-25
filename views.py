@@ -6,7 +6,7 @@ from django.http import HttpResponse
 from django.contrib.auth import get_user_model
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
-from django.shortcuts import redirect
+from django.shortcuts import redirect,get_object_or_404
 from django.contrib.auth import logout
 from django.views.generic import ListView, DetailView 
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
@@ -45,8 +45,7 @@ def movies(request):
     return render(request, 'events/movies.html') 
 def events(request):
     return render(request, 'events/events.html')
-def updateEvents(request):
-    return render(request, 'events/UpdateEvents.html')  
+ 
 def deleteEvents(request):
     return render(request, 'events/deleteEvents.html')  
 def eventList(request):
@@ -63,6 +62,34 @@ def showform(request):
     context= {'form': form }
         
     return render(request, 'events/createEvents.html', context)
+def updateEvents(request, pk):
+    event= get_object_or_404(Events, pk=pk)
+    form = EventsForm(request.POST or None, instance=event)
+    if form.is_valid():
+        form.save()
+        return redirect('events/eventList.html')
+    return render(request, 'events/updateEvents.html', {'event':event})
+def deleteEvents(request, id):  
+    event= get_object_or_404(Events, pk=pk)  
+    event.delete()  
+    return redirect("'events/eventList.html'")
+# def eventDetails(request, pk):
+#     events= get_object_or_404(Events, pk=pk)    
+#     return render(request, 'events/eventDetails.html', {'object':Events})    
+
+
+
+# def updateEvents(request, event_id):
+#     event_id = int(event_id)
+#     try:
+#         event_check = Events.objects.get(id = event_id)
+#     except Events.DoesNotExist:
+#         return redirect('eventList')
+#     form = EventsForm(request.POST or None, instance = event_check)
+#     if form.is_valid():
+#        form.save()
+#        return redirect('eventList')
+#     return render(request, 'events/updateEvents.html', {'form':form})     
 # None is so that it doesn't raise validation errors before a user has pressed the submit button and post so
  # that it retains the data that a user enters into the form after the submit button is pressed
 def do_login(request):

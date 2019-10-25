@@ -5,10 +5,14 @@ from django.contrib.auth.models import User
 class Events(models.Model):
     event_title = models.CharField(max_length=100)
     event_type = models.CharField(max_length=100)
+    # picture = models.ImageField()
     event_location = models.CharField(max_length=100)
     event_description = models.TextField(max_length=100)
     event_start_time = models.TimeField(max_length=100)
     event_end_time = models.TimeField(max_length=100)
+    
+
+
 #     user=models.ForeignKey(User)
 # event_date = models.DateTimeField('Event Date')
 

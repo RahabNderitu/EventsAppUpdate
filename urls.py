@@ -20,6 +20,10 @@ urlpatterns = [
 
     path('eventList', views.eventList, name='eventList'),
     path('forms', views.showform, name='forms'),
+    path('updateEvents/<int:pk>', views.updateEvents, name='updateEvents'),
+    path('deleteEvents/<int:pk>', views.deleteEvents, name='deleteEvents'),
+
+    # path('eventDetails/<int:pk>', views.eventDetails, name='eventDetails'),
     # path('eventView', views.EventView.as_view(), name='eventView'),
     # path('eventView/<int:pk>', views.EventView.as_view(), name='eventView'),
     # path('createEvents', views.CreateEvents.as_view(), name='createEvents'),

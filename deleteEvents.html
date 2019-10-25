@@ -1,5 +1,6 @@
 {% load static %}
 <!DOCTYPE html>
+{% block content %}
 <html>
 <head>
 	<title>Delete Events</title>
@@ -11,6 +12,9 @@
 <h1>Delete Events</h1>  
  <form method="post">  
     {% csrf_token %}  
-    Are you sure you want to delete "{{ object }}" ?  
+    {% for events in all_objects %}
+    {% endfor %}
+    Are you sure you want to delete "{{ event }}" ?  
     <input type="submit" value="Submit" />  
  </form>  
+ {% endblock %}

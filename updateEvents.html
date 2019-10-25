@@ -1,10 +1,55 @@
+{% extends "events/index.html" %}
 {% load static %}
 <!DOCTYPE html>
+{% block content %}
 
-<h1>Event Update</h1>
+<center>
+    <h1 class="display-3" style="background-color:#000000;color:#FFFF99;">Update Events</h1>
+    <form method = 'POST' enctype="multipart/form-data">
+        {% csrf_token %}
+        {% for events in all_objects %}
+        {% endfor %}
+        <div class="form-group"style="width: 20%">
+            <label class="form-label" >Event Title</label>
+            <input type="text" class="form-control" name="event_title" value="{{event.event_title}}" placeholder="Event Title">
+        </div>    
+        <br>    
+        <div class="form-group" style="width: 20%">
+            <label class="form-label">Event Type</label>
+            <input type="text" class="form-control" name="event_type" value="{{event.event_type}}" placeholder="Event Type" type="text">
+            
+        </div>
+        <br>
+        <!-- <img class="event-type-img" src="{% static 'events/img/event1.png' %}" alt="events" data-type="events"/><br><br> -->
 
-<form  method="post">
-{% csrf_token %}
-{{ form.as_p }}
-<input  type="submit"  value="Submit"  />
-</form>
+        <div class="form-group"style="width: 20%">
+            <label class="form-label" >Event Location</label>
+            <input type="text" class="form-control" name="event_location" value="{{event.event_location}}" placeholder="Event Location" type="text">
+        </div>
+        <br>
+        <br>
+        <div>  
+            <label class="event-start-time">Start Time:</label>
+            <input class="event-start-time" type="time" name="event_start_time" value="{{event.event_start_time}}" />
+            <br>
+            <br>
+            <label for="event-end-time">End Time:</label>
+            <input class="event-end-time" type="time" name="event_end_time" value="{{event.event_end_time}}" />
+                
+        </div>
+        <br>
+        <br>
+        <div class="event-label cover-heading">
+            <h2 class="event-label cover-heading">Description</h2>
+        </div>
+        
+        <textarea class="event-description" name="event_description" value="{{event.event_description}}" cols="75" rows="5"></textarea>
+
+        <br>
+      
+       <button type="submit" class="btn btn-lg btn-warning">Update Events</button>
+
+    </form>
+</center>
+
+{% endblock %}
