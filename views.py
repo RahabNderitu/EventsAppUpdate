@@ -69,13 +69,25 @@ def updateEvents(request, pk):
         form.save()
         return redirect('events/eventList.html')
     return render(request, 'events/updateEvents.html', {'event':event})
-def deleteEvents(request, id):  
-    event= get_object_or_404(Events, pk=pk)  
-    event.delete()  
-    return redirect("'events/eventList.html'")
-# def eventDetails(request, pk):
-#     events= get_object_or_404(Events, pk=pk)    
-#     return render(request, 'events/eventDetails.html', {'object':Events})    
+
+
+def deleteEvents(request, pk):  
+    event= get_object_or_404(Events, pk=pk)
+    if request.method == "POST":
+       event.delete()
+       return redirect('events/eventList.html')
+    context= {'event': event }
+    return render(request, 'events/deleteEvents.html',context)   
+
+    # event= get_object_or_404(Events, pk=pk)  
+    # event.delete()  
+    # return render(request,'events/deleteEvents.html',{'object': event})
+
+
+def eventDetails(request, pk):
+    event= get_object_or_404(Events, pk=pk)    
+    context= {'event': event }
+    return render(request, 'events/eventDetails.html', context)    
 
 
 

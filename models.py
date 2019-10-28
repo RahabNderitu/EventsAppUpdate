@@ -5,7 +5,7 @@ from django.contrib.auth.models import User
 class Events(models.Model):
     event_title = models.CharField(max_length=100)
     event_type = models.CharField(max_length=100)
-    # picture = models.ImageField()
+    picture = models.ImageField(upload_to='img/',default='')
     event_location = models.CharField(max_length=100)
     event_description = models.TextField(max_length=100)
     event_start_time = models.TimeField(max_length=100)

@@ -1,4 +1,6 @@
- {% extends "events/index.html" %} {% load static %} {% block content %}
+{% extends "events/index.html" %}
+{% load static %} 
+{% block content %}
 
 <div class="jumbotron jumbotron-fluid">
     <div class="container">
@@ -9,7 +11,7 @@
 </div>
 <div class="btn btn-light ">
 
-    <form name="event-create-form" method="POST">
+    <form name="event-create-form" method="POST" enctype="multipart/form-data">
         {% csrf_token %}
         <!-- <div class="btn btn-success">
             <h2 class="event-label cover-heading">Event Title</h2>
@@ -23,9 +25,10 @@
             <input type="text" class="form-control" name="event_type" placeholder="Event Type" type="text">
             
         </div>
-        <br>
-        <!-- <img class="event-type-img" src="{% static 'events/img/event1.png' %}" alt="events" data-type="events"/><br><br> -->
-
+        <div class="form-group">
+        <label for="avatar">Choose a picture:</label>
+        <input type="file" id="avatar" name="picture">
+        </div>
         <div class="form-group">
             <label class="form-label">Event Location</label>
             <input type="text" class="form-control" name="event_location" placeholder="Event Location" type="text">

@@ -3,7 +3,6 @@ from django.conf.urls import url
 from . import views
 
 
-
 app_name = 'events'
 urlpatterns = [
     path('', views.index, name='index'),
@@ -22,8 +21,7 @@ urlpatterns = [
     path('forms', views.showform, name='forms'),
     path('updateEvents/<int:pk>', views.updateEvents, name='updateEvents'),
     path('deleteEvents/<int:pk>', views.deleteEvents, name='deleteEvents'),
-
-    # path('eventDetails/<int:pk>', views.eventDetails, name='eventDetails'),
+    path('eventDetails/<int:pk>', views.eventDetails, name='eventDetails'),
     # path('eventView', views.EventView.as_view(), name='eventView'),
     # path('eventView/<int:pk>', views.EventView.as_view(), name='eventView'),
     # path('createEvents', views.CreateEvents.as_view(), name='createEvents'),
