@@ -8,8 +8,8 @@ class Events(models.Model):
     picture = models.ImageField(upload_to='img/',default='')
     event_location = models.CharField(max_length=100)
     event_description = models.TextField(max_length=100)
-    event_start_time = models.TimeField(max_length=100)
-    event_end_time = models.TimeField(max_length=100)
+    event_start_date = models.DateTimeField(max_length=100)
+    event_end_date = models.DateTimeField(max_length=100)
     
 
 

@@ -19,13 +19,15 @@
 	{% csrf_token %}
     {% for events in all_objects %}
 <div class="card" style="width: 18rem;">
-  <!-- <img class="card-img-top" src="{{ book.picture.url }}"> -->
+  {% if events.picture %}
+  <img class="card-img-top" src="{{ events.picture.url}}"> 
+  {% endif %}
   <div class="card-body">
     <h5 class="card-title">{{ events.event_title }}</h5>
     <p class="card-text">{{ events.event_type }}</p>
     <p class="card-text">{{events.event_location }}</p>
-    <p class="card-text">{{events.event_start_time }}</p>
-    <p class="card-text">{{events.event_end_time }}</p>
+    <p class="card-text">{{events.event_start_date }}</p>
+    <p class="card-text">{{events.event_end_date }}</p>
 
 
    <div class="card-footer bg-transparent border-dark">

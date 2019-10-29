@@ -20,6 +20,10 @@
             
         </div>
         <br>
+        <div class="form-group">
+        <label class="form-label" >Choose a picture:</label>
+        <input type="file" id="avatar" name="picture" >
+        </div>
         <!-- <img class="event-type-img" src="{% static 'events/img/event1.png' %}" alt="events" data-type="events"/><br><br> -->
 
         <div class="form-group"style="width: 20%">
@@ -29,12 +33,12 @@
         <br>
         <br>
         <div>  
-            <label class="event-start-time">Start Time:</label>
-            <input class="event-start-time" type="time" name="event_start_time" value="{{event.event_start_time}}" />
+            <label class="event-start-date">Start Date:</label>
+            <input class="event-start-date" type="date" value="2018-02-07" name="event_start_date" value="{{event.event_start_date}}" />
             <br>
             <br>
-            <label for="event-end-time">End Time:</label>
-            <input class="event-end-time" type="time" name="event_end_time" value="{{event.event_end_time}}" />
+            <label for="event-end-date">End Date:</label>
+            <input class="event-end-date" type="date" value="2018-02-07"name="event_end_date" value="{{event.event_end_date}}" />
                 
         </div>
         <br>

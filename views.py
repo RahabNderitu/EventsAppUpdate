@@ -40,7 +40,17 @@ def login(request):
 # def logout(request):
 #     return render(request, 'events/login.html')
 def createEvents(request):
-    return render(request, 'events/createEvents.html')
+    createEvents = EventsForm()
+    if request.method == 'POST':
+        createEvents = EventsForm(request.POST, request.FILES)
+        picture=request.FILES["picture"]
+        print("image:",picture.name)
+        print("request.FILES:",request.FILES)
+        if createEvents.is_valid():
+            # createEvents.save()
+            return redirect('events/eventList.html')
+    return render(request, 'events/createEvents.html',{'createEvents':createEvents})
+
 def movies(request):
     return render(request, 'events/movies.html') 
 def events(request):
@@ -55,19 +65,45 @@ def eventList(request):
     return render(request, 'events/eventList.html',context)        
 
 def showform(request):
-    form= EventsForm(request.POST)
-    if form.is_valid():
-        form.save()
-  
-    context= {'form': form }
+
+    form = EventsForm()
+    if request.method == 'POST':
+        form= EventsForm(request.POST,request.FILES)
+        picture=request.FILES["picture"]
+        print("image:",picture.name)
+        print("request.FILES:",request.FILES)
         
-    return render(request, 'events/createEvents.html', context)
+
+        event_start_date = request.POST.get('event_start_date','')
+        print("event_start_date:",event_start_date)
+        event_end_date = request.POST.get('event_end_date','')
+        print("event_end_date:",event_end_date)
+
+        if form.is_valid():
+            form.save()
+            return redirect('events/eventList')
+        else:
+            print("form.errors:",form.errors)
+            return render(request, 'events/createEvents.html',{'form': form, 'error_message':"Form not saved correctly"})
+    else:
+        return render(request, 'events/createEvents.html',{'form': form})
+    # context= {'form': form }
+        
+    # return render(request, 'events/createEvents.html', context)
+
+    
+
 def updateEvents(request, pk):
     event= get_object_or_404(Events, pk=pk)
-    form = EventsForm(request.POST or None, instance=event)
-    if form.is_valid():
-        form.save()
-        return redirect('events/eventList.html')
+    form = EventsForm()
+    if request.method == 'POST':
+       form = EventsForm(request.POST or None,  request.FILES,instance=event)
+       picture=request.FILES["picture"]
+       print("image:",picture.name)
+       print("request.FILES:",request.FILES)
+       if form.is_valid():
+          form.save()
+          return redirect('events/eventList')
     return render(request, 'events/updateEvents.html', {'event':event})
 
 

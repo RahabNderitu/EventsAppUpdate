@@ -6,29 +6,38 @@
 <head>
     <title></title>
 </head>
+
 <body>
+<center>
 <h1 class="display-3" style="background-color:#000000;color:#FFFF99;">Event Details</h1>
 
 <table cellspacing="50" class = 'w-50 table table-light' style="border-radius:10px;background-color:#FFFF99;">
 
 <h1>{{ event.event_title }}</h1>
 <div class="card" style="width: 18rem;">
-    <!-- <div class="col-md-6">
-        <img src="{% static project.image %}" alt="" width="100%">
-    </div> -->
+    {% if event.picture %}
+    <img class="card-img-top" src="{{ event.picture.url}}"> 
+    {% endif %}
+
     <div class="card-body">
         <h5>The Event Type</h5>
         <p>{{ event.event_type }}</p>
         <h5>The Event Location</h5>
         <p>{{ event.event_location }}</p>
-        <h5>The Event Start Time</h5>
-        <p>{{ event.event_start_time }}</p>
-        <h5>The Event End Time</h5>
-        <p>{{ event.event_end_time }}</p>
+        <h5>The Event Start Date</h5>
+        <p>{{ event.event_start_date }}</p>
+        <h5>The Event End Date</h5>
+        <p>{{ event.event_end_date }}</p>
         <h5>About the Event:</h5>
         <p>{{ event.event_description }}</p>
     </div>
+    <div class="form-group">
+            <input type="submit" value="BUY EVENT TICKET">
+            <!-- <button class="btn btn-success event-create-btn" type="submit">Create</button> -->
+    </div>
 </div>
+</center>
 </body>
 </html>
+
 {% endblock %}

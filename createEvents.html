@@ -1,7 +1,7 @@
 {% extends "events/index.html" %}
 {% load static %} 
 {% block content %}
-
+<center>
 <div class="jumbotron jumbotron-fluid">
     <div class="container">
         <div class="btn btn-dark">
@@ -9,10 +9,11 @@
         </div>
     </div>
 </div>
-<div class="btn btn-light ">
+<div class="btn btn-danger ">
 
     <form name="event-create-form" method="POST" enctype="multipart/form-data">
         {% csrf_token %}
+        {{error_message}}
         <!-- <div class="btn btn-success">
             <h2 class="event-label cover-heading">Event Title</h2>
         </div> -->
@@ -36,12 +37,12 @@
         <br>
         <br>
         <div>  
-            <label class="event-start-time">Start Time:</label>
-            <input class="event-start-time" type="time" name="event_start_time" />
+            <label class="event-start-date">Start Date:</label>
+            <input class="event-start-date" type="date" value="2018-02-07" name="event_start_date" />
             <br>
             <br>
-            <label for="event-end-time">End Time:</label>
-            <input class="event-end-time" type="time" name="event_end_time" />
+            <label for="event-end-date">End Date:</label>
+            <input class="event-end-date" type="date"value="2018-02-07" name="event_end_date" />
                 
         </div>
         <br>
@@ -56,7 +57,7 @@
         <br>
         <br> {% if user.is_authenticated %}
         <div class="form-group">
-            <input type="submit" value="Submit">
+            <input type="submit" value="Create Events">
             <!-- <button class="btn btn-success event-create-btn" type="submit">Create</button> -->
         </div>
         <br>
@@ -69,4 +70,5 @@
 
     </main>
 </div>
+</center>
 {% endblock %}
