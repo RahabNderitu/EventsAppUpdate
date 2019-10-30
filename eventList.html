@@ -9,25 +9,31 @@
 </head>
 <body style="background-color:black;">
 <nav class="navbar navbar-light" style="background-color:black;">
-	<a href="/events/eventDetails/{{events.id}}" class="navbar-brand" style="background-color:#FFCC33;color:#000000;border-width:10px;border-color:#FFCC33;border-style:solid;border-spacing:30px;border-radius: 5px;">Event Details</a>
-    <a class="navbar-link btn-lg" href="/events/updateEvents/{{events.id}}" style="background-color:#FFCC33;color:#000000;">Edit Events</a>
-    <a href="/events/deleteEvents/{{events.id}}" class = 'navbar-link btn-lg' style="background-color:#FFCC33;color:#000000;">Delete Events</a>
+	
+    <a class="navbar-link btn-lg" href="/events/updateEvents/{{events.id}}" style="background-color:#FFCC33;color:#000000;"> View All Event </a>
+    
     
 </nav>
 <br>
-<div class="card-columns">
+<div class="card-deck-wrapper", >
+<div class="card-deck ">
 	{% csrf_token %}
     {% for events in all_objects %}
-<div class="card" style="width: 18rem;">
+<div class="card w-50" >
+<!-- <div class="card" style="width: 18rem;"> -->  
   {% if events.picture %}
-  <img class="card-img-top" src="{{ events.picture.url}}"> 
+  <div class="embed-responsive embed-responsive-1by1">
+  <img class="card-img-top embed-responsive-item"  alt="Card image cap" src="{{ events.picture.url}}" > 
+  </div>
   {% endif %}
   <div class="card-body">
     <h5 class="card-title">{{ events.event_title }}</h5>
     <p class="card-text">{{ events.event_type }}</p>
     <p class="card-text">{{events.event_location }}</p>
     <p class="card-text">{{events.event_start_date }}</p>
+    <p class="card-text">{{events.event_start_time }}</p>
     <p class="card-text">{{events.event_end_date }}</p>
+    <p class="card-text">{{events.event_end_time }}</p>
 
 
    <div class="card-footer bg-transparent border-dark">
@@ -41,6 +47,7 @@
   </div>
 </div>
 {% endfor %}
+</div>
 </div>
 </body>
 </html>

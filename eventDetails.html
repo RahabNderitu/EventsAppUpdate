@@ -8,7 +8,7 @@
 </head>
 
 <body>
-<center>
+
 <h1 class="display-3" style="background-color:#000000;color:#FFFF99;">Event Details</h1>
 
 <table cellspacing="50" class = 'w-50 table table-light' style="border-radius:10px;background-color:#FFFF99;">
@@ -26,17 +26,98 @@
         <p>{{ event.event_location }}</p>
         <h5>The Event Start Date</h5>
         <p>{{ event.event_start_date }}</p>
+        <h5>The Event Start Time</h5>
+        <p>{{ event.event_start_time }}</p>
         <h5>The Event End Date</h5>
         <p>{{ event.event_end_date }}</p>
+        <h5>The Event End Time</h5>
+        <p>{{ event.event_end_time }}</p>
         <h5>About the Event:</h5>
         <p>{{ event.event_description }}</p>
     </div>
-    <div class="form-group">
-            <input type="submit" value="BUY EVENT TICKET">
-            <!-- <button class="btn btn-success event-create-btn" type="submit">Create</button> -->
-    </div>
 </div>
-</center>
+<br>
+<br>
+<div class="btn btn-dark">
+    <div class="panel panel-default">
+        <div class="panel-heading"><b>Ticket details</b>
+        </div>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th class="col-xs-3">Selection</th>
+                    <th class="col-xs-3">Ticket type</th>
+                    <th class="col-xs-3">Price (KSH)</th>
+                    <th class="col-xs-3">Quantity</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>
+                        <div class="radio">
+                            <input type="radio" value="selected" />
+                        </div>
+                    </td>
+                    <td>
+                        <p class="form-control-static">3D</p>
+                    </td>
+                    <td>
+                        <p class="form-control-static">1500</p>
+                    </td>
+                    <td>
+                        <div class="input-group spinner">
+                            <input type="text" class="form-control" value="1" />
+                            <div class="input-group-btn-vertical">
+                                <button class="btn btn-default"><i class="glyphicon glyphicon-chevron-up"></i>
+
+                                </button>
+                                <button class="btn btn-default"><i class="glyphicon glyphicon-chevron-down"></i>
+
+                                </button>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                <br>
+                <br>
+
+                <tr>
+                    <td>
+                        <div class="radio">
+                            <input type="radio" value="selected" />
+                        </div>
+                    </td>
+                    <td>
+                        <p class="form-control-static">2D</p>
+                    </td>
+                    <td>
+                        <p class="form-control-static">1000</p>
+                    </td>
+                    <td>
+                        <div class="input-group spinner">
+                            <input type="text" class="form-control" value="1" />
+                            <div class="input-group-btn-vertical">
+                                <button class="btn btn-default"><i class="glyphicon glyphicon-chevron-up"></i>
+
+                                </button>
+                                <button class="btn btn-default"><i class="glyphicon glyphicon-chevron-down"></i>
+
+                                </button>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+
+
+  </tbody>
+    </table>
+</div>
+<div class="col-xs-12 text-right">
+    <p>PS: There are only <strong>10</strong> ticket still available.</p>
+    Buy ticket for {{ event.event_title }}
+    <br><br>
+    <input type="submit" class="btn btn-success" value="Buy Ticket" />
+</div>
 </body>
 </html>
 

@@ -81,7 +81,7 @@ def showform(request):
 
         if form.is_valid():
             form.save()
-            return redirect('events/eventList')
+            return redirect('/events/eventList')
         else:
             print("form.errors:",form.errors)
             return render(request, 'events/createEvents.html',{'form': form, 'error_message':"Form not saved correctly"})
@@ -95,15 +95,20 @@ def showform(request):
 
 def updateEvents(request, pk):
     event= get_object_or_404(Events, pk=pk)
-    form = EventsForm()
     if request.method == 'POST':
-       form = EventsForm(request.POST or None,  request.FILES,instance=event)
-       picture=request.FILES["picture"]
-       print("image:",picture.name)
-       print("request.FILES:",request.FILES)
-       if form.is_valid():
-          form.save()
-          return redirect('events/eventList')
+        form = EventsForm(request.POST ,  request.FILES,instance=event)
+        picture=request.FILES["picture"]
+        print("image:",picture.name)
+        print("request.FILES:",request.FILES)
+        print("event.id:",event.id)
+        if form.is_valid():
+            form.save()
+            return redirect('/events/eventList')
+        else:
+            print("form.errors:",form.errors)
+            return render(request, 'events/updateEvents.html', {'event':event,'error_message':"Form not saved correctly"})
+
+              
     return render(request, 'events/updateEvents.html', {'event':event})
 
 

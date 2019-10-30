@@ -5,7 +5,7 @@
 <div class="jumbotron jumbotron-fluid">
     <div class="container">
         <div class="btn btn-dark">
-            <h1 class="cover-heading">CREATE EVENTS</h1>
+            <h1 class="cover-heading">CREATE EVENT</h1>
         </div>
     </div>
 </div>
@@ -38,11 +38,20 @@
         <br>
         <div>  
             <label class="event-start-date">Start Date:</label>
-            <input class="event-start-date" type="date" value="2018-02-07" name="event_start_date" />
+            <input class="event-start-date" type="date"  name="event_start_date" />
+            <br>
+            <br>
+            <label class="event-start-time">Start Time:</label>
+            <input class="event-start-time" type="time"  name="event_start_time" />
             <br>
             <br>
             <label for="event-end-date">End Date:</label>
-            <input class="event-end-date" type="date"value="2018-02-07" name="event_end_date" />
+            <input class="event-end-date" type="date" name="event_end_date" />
+            <br>
+            <br>
+            <label class="event-end-time">End Time:</label>
+            <input class="event-start-time" type="time"  name="event_end_time" />
+            
                 
         </div>
         <br>
@@ -57,13 +66,13 @@
         <br>
         <br> {% if user.is_authenticated %}
         <div class="form-group">
-            <input type="submit" value="Create Events">
+            <input type="submit" value="Create Event">
             <!-- <button class="btn btn-success event-create-btn" type="submit">Create</button> -->
         </div>
         <br>
         <br> {% else %}
 
-        <p class="signin-error">Sign in to create events</p>
+        <p class="signin-error">Sign in to create event</p>
 
         {% endif %}
     </form>

@@ -4,7 +4,7 @@
 {% block content %}
 
 <center>
-    <h1 class="display-3" style="background-color:#000000;color:#FFFF99;">Update Events</h1>
+    <h1 class="display-3" style="background-color:#000000;color:#FFFF99;">Update Event</h1>
     <form method = 'POST' enctype="multipart/form-data">
         {% csrf_token %}
         {% for events in all_objects %}
@@ -34,11 +34,19 @@
         <br>
         <div>  
             <label class="event-start-date">Start Date:</label>
-            <input class="event-start-date" type="date" value="2018-02-07" name="event_start_date" value="{{event.event_start_date}}" />
+            <input class="event-start-date"type="date"name="event_start_date" value="{{event.event_start_date}}" />
+            <br>
+            <br>
+            <label class="event-start-time">Start Time:</label>
+            <input class="event-start-time"type="time"name="event_start_time" value="{{event.event_start_time}}"/>
             <br>
             <br>
             <label for="event-end-date">End Date:</label>
-            <input class="event-end-date" type="date" value="2018-02-07"name="event_end_date" value="{{event.event_end_date}}" />
+            <input class="event-end-date" type="date" name="event_end_date" value="{{event.event_end_date}}" />
+            <br>
+            <br>
+            <label class="event-end-time">End Time:</label>
+            <input class="event-start-time" type="time"  name="event_end_time" value="{{event.event_end_time}}" />
                 
         </div>
         <br>
@@ -47,11 +55,11 @@
             <h2 class="event-label cover-heading">Description</h2>
         </div>
         
-        <textarea class="event-description" name="event_description" value="{{event.event_description}}" cols="75" rows="5"></textarea>
+        <textarea class="event-description" name="event_description" value="{{event.event_description}}" cols="75" rows="5">{{event.event_description}}</textarea>
 
         <br>
       
-       <button type="submit" class="btn btn-lg btn-warning">Update Events</button>
+       <button type="submit" class="btn btn-lg btn-warning">Update Event</button>
 
     </form>
 </center>
