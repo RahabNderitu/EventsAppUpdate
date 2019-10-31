@@ -1,0 +1,27 @@
+{% extends "events/index.html" %}
+{% load static %}
+{% block content %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+</head>
+
+<body>
+
+<h1 class="display-3" style="background-color:#000000;color:#FFFF99;">Guest Details</h1>
+<div class="card-columns " style="padding-left:20px;padding-right:20px;">
+    {% csrf_token %}
+<div class="card w-10 card h-100" >
+    <div class="card-body">
+        <p>{{ event.name }}</p>
+        <p>{{ event.email }}</p>
+        <p>{{ event.phone}}</p>
+        <p>{{ event.number_of_seats}}</p>
+        <p>{{ event.is_attending}}</p>
+        <p>{{ event.message}}</p>
+    </div>
+</div>
+</body>
+</html>
+{% endblock %}

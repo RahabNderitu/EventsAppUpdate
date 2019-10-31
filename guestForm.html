@@ -1,0 +1,51 @@
+{% extends "events/index.html" %}
+{% load static %} 
+{% block content %}
+<center>
+<div class="jumbotron jumbotron-fluid">
+    <div class="container">
+        <div class="btn btn-dark">
+            <h1 class="cover-heading">GUEST FORM</h1>
+        </div>
+    </div>
+</div>
+<div class="btn btn-danger ">
+    <form class="user" method="post" action="/events/do_login">
+                    {% csrf_token %}
+                    
+                    <div class="form-group">
+                        <input type="guest_name" class="form-control form-control-user" id="exampleInputEmail" aria-describedby="emailHelp" placeholder="Enter  Name.." name="name">
+                    </div>
+                    <div class="form-group">
+                        <input type="email" class="form-control form-control-user" id="exampleInputEmail" placeholder="Email Address" name="email">
+                    </div>
+                    <div class="form-group">
+                        <input type="tel" class="form-control" placeholder="Enter Phone Number" name="phone">
+                    </div>
+                    <div class="form-group">
+                        <input type=""number"" class="form-control" placeholder="Enter no of seats" name="no_of_seats">
+                    </div>
+                    <div class="event-label cover-heading">
+                        <h2 class="event-label cover-heading">In Attendance?</h2>
+                    </div>
+                    <div class="form-group">
+                        <input type="checkbox" id="YES" name="is_attending">
+                        <label for="YES">YES</label>
+                    </div>
+
+                    <div class="form-group">
+                        <input type="checkbox" id="NO" name="is_attending">
+                        <label for="NO">NO</label>
+                    </div>
+                    <div class="event-label cover-heading">
+                        <h2 class="event-label cover-heading">Message</h2>
+                    </div>
+        
+                    <textarea class="message" name="message" cols="75" rows="5"></textarea>
+                    </div>
+                    <input type="submit" value="Create Guest">
+                
+    </form>
+</div>
+</center>
+{% endblock %}

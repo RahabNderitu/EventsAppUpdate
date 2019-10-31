@@ -1,0 +1,26 @@
+{% extends "events/index.html" %}
+{% load static %}
+{% block content %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+</head>
+<body>
+<h1 class="display-3" style="background-color:#000000;color:#FFFF99;">Delete Guest</h1>
+<form method="POST">
+    {% csrf_token %}
+    <p>Are you sure you want to delete "{{ event }}" ?</p>
+    <input type="submit" value="{% trans "Delete" %}" />
+</form>
+</body>
+</html>
+{% endblock %}
+
+
+
+
+
+
+
+
