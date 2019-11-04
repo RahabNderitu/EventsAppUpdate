@@ -16,24 +16,19 @@
 <h1>{{ event.event_title }}</h1>
 <div class="card" style="width: 18rem;">
     {% if event.picture %}
-    <img class="card-img-top" src="{{ event.picture.url}}"> 
+    <div class="embed-responsive embed-responsive-1by1">
+    <img class="card-img-top embed-responsive-item"  alt="Card image cap" src="{{ event.picture.url}}"> 
+</div>
     {% endif %}
 
     <div class="card-body">
-        <h5>The Event Type</h5>
-        <p>{{ event.event_type }}</p>
-        <h5>The Event Location</h5>
-        <p>{{ event.event_location }}</p>
-        <h5>The Event Start Date</h5>
-        <p>{{ event.event_start_date }}</p>
-        <h5>The Event Start Time</h5>
-        <p>{{ event.event_start_time }}</p>
-        <h5>The Event End Date</h5>
-        <p>{{ event.event_end_date }}</p>
-        <h5>The Event End Time</h5>
-        <p>{{ event.event_end_time }}</p>
-        <h5>About the Event:</h5>
-        <p>{{ event.event_description }}</p>
+    <h5 class="card-title" style="font-size:18px; font-weight:bold;">{{ event.event_title }}</h5>
+    <p class="card-text"  style="font-weight:lighter;">{{ event.event_type }}</p>
+    <p class="card-text" style="font-weight:bolder;">{{event.event_location }}</p>
+    <p class="card-text" style="font-weight:lighter;">{{event.event_start_date }}-{{event.event_end_date }}</p>
+    <p class="card-text" style="font-weight:lighter;">{{event.event_start_time }}-{{event.event_end_time }}</p>
+        <!-- <h5>About the Event:</h5> -->
+    <p style="font-weight:bolder;">{{ event.event_description }}</p>
     </div>
 </div>
 <br>
@@ -45,7 +40,7 @@
         <table class="table table-striped">
             <thead>
                 <tr>
-                    <th class="col-xs-3">Selection</th>
+                    
                     <th class="col-xs-3">Ticket type</th>
                     <th class="col-xs-3">Price (KSH)</th>
                     <th class="col-xs-3">Quantity</th>
@@ -53,60 +48,22 @@
             </thead>
             <tbody>
                 <tr>
+                    
                     <td>
-                        <div class="radio">
-                            <input type="radio" value="selected" />
-                        </div>
+                        <p class="form-control-static">{{event.ticket_type}}</p>
                     </td>
                     <td>
-                        <p class="form-control-static">3D</p>
+                        <p class="form-control-static">{{event.price}}</p>
                     </td>
                     <td>
-                        <p class="form-control-static">1500</p>
-                    </td>
-                    <td>
-                        <div class="input-group spinner">
-                            <input type="text" class="form-control" value="1" />
-                            <div class="input-group-btn-vertical">
-                                <button class="btn btn-default"><i class="glyphicon glyphicon-chevron-up"></i>
-
-                                </button>
-                                <button class="btn btn-default"><i class="glyphicon glyphicon-chevron-down"></i>
-
-                                </button>
-                            </div>
-                        </div>
+                    <div class="form-group" >
+                        
+                        <input type="number" class="form-control" name="quantity"  type="text">
+                    </div>
                     </td>
                 </tr>
-                <br>
-                <br>
+                
 
-                <tr>
-                    <td>
-                        <div class="radio">
-                            <input type="radio" value="selected" />
-                        </div>
-                    </td>
-                    <td>
-                        <p class="form-control-static">2D</p>
-                    </td>
-                    <td>
-                        <p class="form-control-static">1000</p>
-                    </td>
-                    <td>
-                        <div class="input-group spinner">
-                            <input type="text" class="form-control" value="1" />
-                            <div class="input-group-btn-vertical">
-                                <button class="btn btn-default"><i class="glyphicon glyphicon-chevron-up"></i>
-
-                                </button>
-                                <button class="btn btn-default"><i class="glyphicon glyphicon-chevron-down"></i>
-
-                                </button>
-                            </div>
-                        </div>
-                    </td>
-                </tr>
 
 
   </tbody>

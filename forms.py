@@ -1,6 +1,6 @@
 from django import forms
 
-from .models import Events,Guest
+from .models import Events,Guest,Ticket
 
 class EventsForm(forms.ModelForm):
 
@@ -20,6 +20,11 @@ class GuestForm(forms.ModelForm):
 
 
 
+class TicketForm(forms.ModelForm):
+
+	class Meta:
+		model = Ticket
+		fields = ['name','price', 'ticket_type','quantity','total','event','ticket', 'max_sellable_tickets']
 
 
 

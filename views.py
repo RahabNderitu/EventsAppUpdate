@@ -14,6 +14,7 @@ from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from events.models import Events
 from django.urls import reverse_lazy
 from .forms import EventsForm
+from.forms import TicketForm
 
 
 # Create your views here.
@@ -55,7 +56,8 @@ def movies(request):
     return render(request, 'events/movies.html') 
 def events(request):
     return render(request, 'events/events.html')
- 
+
+@login_required(login_url='/events/login')
 def deleteEvents(request):
     return render(request, 'events/deleteEvents.html')  
 def eventList(request):
@@ -64,6 +66,7 @@ def eventList(request):
 
     return render(request, 'events/eventList.html',context)        
 
+@login_required(login_url='/events/login')
 def showform(request):
 
     form = EventsForm()
@@ -87,12 +90,23 @@ def showform(request):
             return render(request, 'events/createEvents.html',{'form': form, 'error_message':"Form not saved correctly"})
     else:
         return render(request, 'events/createEvents.html',{'form': form})
-    # context= {'form': form }
-        
-    # return render(request, 'events/createEvents.html', context)
-
+    
+def ticket(request):
+    form = TicketForm()
+    if request.method == 'POST':
+        form= TicketForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('/events/ticket')
+        else:
+            print("form.errors:",form.errors)
+            return render(request, 'events/eventDetails.html',{'form': form, 'error_message':"Form not saved correctly"})
+    else:
+        return render(request, 'events/eventDetails.html',{'form': form})
     
 
+    
+@login_required(login_url='/events/login')
 def updateEvents(request, pk):
     event= get_object_or_404(Events, pk=pk)
     if request.method == 'POST':
@@ -111,18 +125,15 @@ def updateEvents(request, pk):
               
     return render(request, 'events/updateEvents.html', {'event':event})
 
-
+@login_required(login_url='/events/login')
 def deleteEvents(request, pk):  
     event= get_object_or_404(Events, pk=pk)
     if request.method == "POST":
        event.delete()
-       return redirect('events/eventList.html')
+       return redirect('/events/eventList.html')
     context= {'event': event }
     return render(request, 'events/deleteEvents.html',context)   
 
-    # event= get_object_or_404(Events, pk=pk)  
-    # event.delete()  
-    # return render(request,'events/deleteEvents.html',{'object': event})
 
 
 def eventDetails(request, pk):
@@ -131,20 +142,6 @@ def eventDetails(request, pk):
     return render(request, 'events/eventDetails.html', context)    
 
 
-
-# def updateEvents(request, event_id):
-#     event_id = int(event_id)
-#     try:
-#         event_check = Events.objects.get(id = event_id)
-#     except Events.DoesNotExist:
-#         return redirect('eventList')
-#     form = EventsForm(request.POST or None, instance = event_check)
-#     if form.is_valid():
-#        form.save()
-#        return redirect('eventList')
-#     return render(request, 'events/updateEvents.html', {'form':form})     
-# None is so that it doesn't raise validation errors before a user has pressed the submit button and post so
- # that it retains the data that a user enters into the form after the submit button is pressed
 def do_login(request):
     request_method = request.method
     print('request_method = ' + request_method)

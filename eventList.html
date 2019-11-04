@@ -15,39 +15,40 @@
     
 </nav>
 <br>
-<div class="card-deck-wrapper", >
-<div class="card-deck ">
+<!-- <div class="card-deck-wrapper" > -->
+<div class="card-columns "  
+  style="padding-left:20px;padding-right:20px; flex-basis:auto ">
 	{% csrf_token %}
     {% for events in all_objects %}
-<div class="card w-50" >
+<div class="card w-10 card h-100" >
 <!-- <div class="card" style="width: 18rem;"> -->  
   {% if events.picture %}
   <div class="embed-responsive embed-responsive-1by1">
   <img class="card-img-top embed-responsive-item"  alt="Card image cap" src="{{ events.picture.url}}" > 
   </div>
   {% endif %}
-  <div class="card-body">
-    <h5 class="card-title">{{ events.event_title }}</h5>
-    <p class="card-text">{{ events.event_type }}</p>
-    <p class="card-text">{{events.event_location }}</p>
-    <p class="card-text">{{events.event_start_date }}</p>
-    <p class="card-text">{{events.event_start_time }}</p>
-    <p class="card-text">{{events.event_end_date }}</p>
-    <p class="card-text">{{events.event_end_time }}</p>
+  <div class=" card-body">
+    <h5 class="card-title" style="font-size:18px; font-weight:bold;">{{ events.event_title }}</h5>
+    <p class="card-text"  style="font-weight:lighter;">{{ events.event_type }}</p>
+    <p class="card-text" style="font-weight:bolder;">{{events.event_location }}</p>
+    <p class="card-text" style="font-weight:lighter;">{{events.event_start_date }}-{{events.event_end_date }}</p>
+    <p class="card-text" style="font-weight:lighter;">{{events.event_start_time }}-{{events.event_end_time }}</p>
+   <!--  <p class="card-text">{{events.event_end_date }}</p>
+    <p class="card-text">{{events.event_end_time }}</p> -->
 
 
    <div class="card-footer bg-transparent border-dark">
-   <p class="card-title">{{events.event_description}}</p>
+   <p class="card-title" style="font-weight:bolder;">{{events.event_description}}</p>
    <center>
-   	   <a  href="/events/eventDetails/{{events.id}}" class="btn btn-dark">Event Details</a><br><br>
-       <a  href="/events/updateEvents/{{events.id}}" class="btn btn-dark">Edit Events</a><br><br>
-       <a  href="/events/deleteEvents/{{events.id}}"class="btn btn-dark">Delete Events</a>
+   	   <a  href="/events/eventDetails/{{events.id}}" class="btn btn-dark">Event Details</a>
+       <a  href="/events/updateEvents/{{events.id}}" class="btn btn-dark">Edit Event</a>
+       <a  href="/events/deleteEvents/{{events.id}}"class="btn btn-dark">Delete Event</a>
     </center>
     </div>
   </div>
 </div>
 {% endfor %}
-</div>
+<!-- </div> -->
 </div>
 </body>
 </html>

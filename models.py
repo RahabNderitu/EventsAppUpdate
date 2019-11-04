@@ -23,6 +23,20 @@ class Guest(models.Model):
 
 
 
+class Ticket(models.Model):
+    name = models.CharField(max_length=50)
+    price = models.IntegerField()
+    ticket_type = models.CharField(max_length=20)
+    quantity = models.IntegerField()
+    total = models.IntegerField()
+    event= models.ForeignKey(Events,on_delete=models.CASCADE)
+    ticket= models.IntegerField()
+    max_sellable_tickets= models.IntegerField()
+
+
+    
+
+
 
 
 
