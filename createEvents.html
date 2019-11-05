@@ -17,40 +17,40 @@
         <!-- <div class="btn btn-success">
             <h2 class="event-label cover-heading">Event Title</h2>
         </div> -->
-        <div class="form-group">
+        <div class="form-group" >
             <label class="form-label">Event Title</label>
             <input type="text" class="form-control" name="event_title" placeholder="Event Title">
         <br>    
-        <div class="form-group">
+        <div class="form-group" >
             <label class="form-label">Event Type</label>
             <input type="text" class="form-control" name="event_type" placeholder="Event Type" type="text">
             
         </div>
         <div class="form-group">
-        <label for="avatar">Choose a picture:</label>
-        <input type="file" id="avatar" name="picture">
+        <label class="form-label">Choose a picture:</label>
+        <input type="file" class="form-control"id="avatar" name="picture">
         </div>
-        <div class="form-group">
+        <div class="form-group" >
             <label class="form-label">Event Location</label>
             <input type="text" class="form-control" name="event_location" placeholder="Event Location" type="text">
         </div>
         <br>
         <br>
-        <div>  
-            <label class="event-start-date">Start Date:</label>
-            <input class="event-start-date" type="date"  name="event_start_date" />
+        <div class="form-group" >  
+            <label class="form-label">Start Date:</label>
+            <input class="form-control" type="date"  name="event_start_date" />
             <br>
             <br>
-            <label class="event-start-time">Start Time:</label>
-            <input class="event-start-time" type="time"  name="event_start_time" />
+            <label class="form-label">Start Time:</label>
+            <input class="form-control" type="time"  name="event_start_time" />
             <br>
             <br>
-            <label for="event-end-date">End Date:</label>
-            <input class="event-end-date" type="date" name="event_end_date" />
+            <label  class="form-label">End Date:</label>
+            <input class="form-control" type="date" name="event_end_date" />
             <br>
             <br>
-            <label class="event-end-time">End Time:</label>
-            <input class="event-start-time" type="time"  name="event_end_time" />
+            <label class="form-label">End Time:</label>
+            <input class="form-control" type="time"  name="event_end_time" />
             
                 
         </div>
@@ -59,11 +59,23 @@
         <div class="event-label cover-heading">
             <h2 class="event-label cover-heading">Description</h2>
         </div>
-        
         <textarea class="event-description" name="event_description" cols="75" rows="5"></textarea>
+
+        <div class="form-group" >
+            <!-- <label class="form-label">Maximum number of tickets</label> -->
+            <input type="hidden" class="form-control" name="maximum_tickets" value="50" placeholder="Maximum tickets">
+        </div>
+
+        <div class="form-group" >
+            <label class="form-label">Ticket Price</label>
+            <input type="number" class="form-control" name="price" placeholder="Ticket price">
+        </div>
+
+        
         
         <!-- <input type="hidden" name="user-id" value="{{ user.id }}" /> -->
         <br>
+
         <br> {% if user.is_authenticated %}
         <div class="form-group">
             <input type="submit" value="Create Event">

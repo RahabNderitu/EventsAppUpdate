@@ -91,21 +91,8 @@ def showform(request):
     else:
         return render(request, 'events/createEvents.html',{'form': form})
     
-def ticket(request):
-    form = TicketForm()
-    if request.method == 'POST':
-        form= TicketForm(request.POST)
-        if form.is_valid():
-            form.save()
-            return redirect('/events/ticket')
-        else:
-            print("form.errors:",form.errors)
-            return render(request, 'events/eventDetails.html',{'form': form, 'error_message':"Form not saved correctly"})
-    else:
-        return render(request, 'events/eventDetails.html',{'form': form})
-    
 
-    
+
 @login_required(login_url='/events/login')
 def updateEvents(request, pk):
     event= get_object_or_404(Events, pk=pk)
