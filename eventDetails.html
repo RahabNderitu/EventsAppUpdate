@@ -3,94 +3,61 @@
 {% block content %}
 <!DOCTYPE html>
 <html>
-<head>
-    <title></title>
-</head>
-
-<body>
-<div  class="col-xs-6">
-<h1 class="display-3" style="background-color:#000000;color:#FFFF99;">Event Details</h1>
-
-<table cellspacing="50" class = 'w-50 table table-light' style="border-radius:10px;background-color:#FFFF99;">
-
-<h1>{{ event.event_title }}</h1>
-<div class="card" style="width: 18rem;">
-    {% if event.picture %}
-    <div class="embed-responsive embed-responsive-1by1">
-    <img class="card-img-top embed-responsive-item"  alt="Card image cap" src="{{ event.picture.url}}"> 
-</div>
-    {% endif %}
-
-    <div class="card-body">
-    <h5 class="card-title" style="font-size:18px; font-weight:bold;">{{ event.event_title }}</h5>
-    <p class="card-text"  style="font-weight:lighter;">{{ event.event_type }}</p>
-    <p class="card-text" style="font-weight:bolder;">{{event.event_location }}</p>
-    <p class="card-text" style="font-weight:lighter;">{{event.event_start_date }}-{{event.event_end_date }}</p>
-    <p class="card-text" style="font-weight:lighter;">{{event.event_start_time }}-{{event.event_end_time }}</p>
-        <!-- <h5>About the Event:</h5> -->
-    <p style="font-weight:bolder;">{{ event.event_description }}</p>
-    </div>
-</div>
-</div>
-<br>
-<br>
-<div class="btn btn-dark">
-    <div class="panel panel-default">
-        <div class="panel-heading"><b>Ticket details</b>
-        </div>
-        <table class="table table-striped"style= "width: 100%;margin: 0 auto !important;">
-            <thead>
-                <tr>
-                    
-                    
-                    <th class="col-xs-3">Price (KSH)</th>
-                    <th class="col-xs-3">Quantity</th>
-                    <th class="col-xs-3">Total</th>
-
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    
-                    <td>
-                        <p class="form-control-static">500</p>
-                    </td>
-                    <td>
-                    <div class="form-group" >
-                        
-                        <input type="number" class="form-control" name="quantity"  >
-                    </div>
-                    </td>
-
-                    <td>
-                    <div class="form-group" >
-                        
-                        <input type="number" class="form-control" value="ksh 0" >
-                        <script>
-                        function calculateAmount(val) {
-                            var tot_price = val * 500;
-                            /*display the result*/
-                            var divobj = document.getElementById('tot_amount');
-                            divobj.value = tot_price;
-                            }
-                      </script>
-                    </div>
-                    </td>
-                </tr>
-                
-
-
-
-  </tbody>
-    </table>
-</div>
-<div class="col-xs-6 text-center">
-    <p>PS: There are only <strong>10</strong> ticket still available.</p>
-    Buy ticket for {{ event.event_title }}
-    <br><br>
-    <input type="submit" class="btn btn-success" value="Buy Ticket" />
-</div>
-</body>
+   <head>
+      <title></title>
+   </head>
+   <body>
+      <h3 class="display-3" style="background-color:#000000;color:#FFFF99;text-align:center;">Event Details </h3>
+      <div class="container" style="padding-left:2px;padding-right:100px;padding-top:20px;padding-bottom:100px;">
+         <div class="row">
+            <div class="col-sm-8" >
+               <h5 style="font-weight:bolder;">{{ event.event_title }}</h5>
+               <div class="card" style="width: 18rem;">
+                  {% if event.picture %}
+                  <div class="embed-responsive embed-responsive-1by1">
+                     <img class="card-img-top embed-responsive-item"  alt="Card image cap" src="{{ event.picture.url}}"> 
+                  </div>
+                  {% endif %}
+                  <div class="card-body">
+                     <h5 class="card-title" style="font-size:18px; font-weight:bold;">{{ event.event_title }}</h5>
+                     <p class="card-text"  style="font-weight:lighter;">{{ event.event_type }}</p>
+                     <p class="card-text" style="font-weight:bolder;">{{event.event_location }}</p>
+                     <p class="card-text" style="font-weight:lighter;">{{event.event_start_date }}-{{event.event_end_date }}</p>
+                     <p class="card-text" style="font-weight:lighter;">{{event.event_start_time }}-{{event.event_end_time }}</p>
+                     <!-- <h5>About the Event:</h5> -->
+                     <p class="card-text" style="font-weight:bolder;">Ticket price: KSH{{event.price }}</p>
+                     <p style="font-weight:bolder;">{{ event.event_description }}</p>
+                  </div>
+               </div>
+            </div>
+         
+         <div class="col-sm-4">
+            <h5 style="font-weight:bolder;">PURCHASE A TICKET</h5>
+         <form name="ticket_form" method="POST" >
+            {% csrf_token %}  
+            <div class="form-group" style="width: 50%">
+               <label class="form-label">Price</label>
+               <input type="price" class="form-control" name="price" value="{{event.price}}" >
+            </div>
+            <div class="form-group" style="width: 50%">
+               <label class="form-label">Quantity</label>
+               <input type="number" class="form-control" name="quantity" >
+            </div>
+            <div class="form-group"style="width: 50%" >
+               <label class="form-label">Total</label>
+               <input type="total" class="form-control" name="total" value="0">
+            </div>
+            <div>
+               <!-- <p>PS: There are only <strong>10</strong> ticket still available.</p> -->
+               Buy ticket for {{ event.event_title }}
+               <br><br>
+               <button type="submit" class="btn btn-success"/>BUY TICKET</button>
+            </div>
+         </form>
+      </div>
+     
+      </div>
+      </div>
+   </body>
 </html>
-
 {% endblock %}

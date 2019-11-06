@@ -11,18 +11,17 @@ from django.contrib.auth import logout
 from django.views.generic import ListView, DetailView 
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 # from .models import events
-from events.models import Events
+from events.models import Events,Ticket
 from django.urls import reverse_lazy
 from .forms import EventsForm
 from.forms import TicketForm
 
 
+
 # Create your views here.
+
 def index(request): 
-    # context = {
-    #     'page': 'index',
-    #     'coverHeading': 'Search Events'
-    # }
+   
     return render(request, 'events/login.html')
  
 def forgotpassword(request):
@@ -121,13 +120,38 @@ def deleteEvents(request, pk):
     context= {'event': event }
     return render(request, 'events/deleteEvents.html',context)   
 
-
-
 def eventDetails(request, pk):
-    event= get_object_or_404(Events, pk=pk)    
-    context= {'event': event }
-    return render(request, 'events/eventDetails.html', context)    
+    eventinstance= get_object_or_404(Events, pk=pk)
+    if request.method == 'GET':
+        context= {'event': eventinstance }
+        return render(request, 'events/eventDetails.html', context)
+    else:
+        context= {'event': eventinstance }
+        the_title=eventinstance.event_title
+        user_id=request.user.id
+        ticketquantity = request.POST.get('quantity')
+        newticket=Ticket()
+        newticket.event=eventinstance
+        newticket.quantity=ticketquantity
+        newticket.user_name=request.user
+        newticket.save()
+        print("pk:",pk)
+        print("the_title:",the_title)
+        print("user_id:",user_id)
+        print("ticketquantity:",ticketquantity)
+         
+        return render(request, 'events/ticketDetails.html',context)
 
+def ticketDetails(request,pk):
+    event= get_object_or_404(Events, pk=pk)
+    user = User.objects.get(username=request.user.user_name)
+    if request.method == 'POST':
+        
+        if form.is_valid():
+            form.save()
+            return redirect('/events/ticketDetails.html')
+
+    return render(request, 'events/eventDetails.html',{'event':event})         
 
 def do_login(request):
     request_method = request.method
