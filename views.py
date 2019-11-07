@@ -135,23 +135,33 @@ def eventDetails(request, pk):
         newticket.quantity=ticketquantity
         newticket.user_name=request.user
         newticket.save()
+        ticketid= newticket.id
+        eventid=newticket.event_id
+        ticketprice = eventinstance.price
+        print("ticketid:",ticketid)
+        print("eventid:",eventid)
+        print("ticketprice:",ticketprice)
         print("pk:",pk)
         print("the_title:",the_title)
         print("user_id:",user_id)
         print("ticketquantity:",ticketquantity)
          
-        return render(request, 'events/ticketDetails.html',context)
+        return redirect('/events/ticketDetails/'+ str(ticketid))
 
 def ticketDetails(request,pk):
-    event= get_object_or_404(Events, pk=pk)
-    user = User.objects.get(username=request.user.user_name)
-    if request.method == 'POST':
-        
-        if form.is_valid():
-            form.save()
-            return redirect('/events/ticketDetails.html')
+    # eventinstance= get_object_or_404(Events, pk=pk)
+    # context= {'event':eventinstance}
+    ticketinstance= get_object_or_404(Ticket, pk=pk)
+    eventid=ticketinstance.event_id
+    eventinstance = Events.objects.get(id=eventid)
+    eventname=eventinstance.event_title
+    eventprice=eventinstance.price
+    ticketquantity=ticketinstance.quantity
+    eventtotal=eventprice*ticketquantity
+    return render(request, 'events/ticketDetails.html',{'event_name':eventname,
+        'event_price':eventprice,'event_total':eventtotal,'ticket_quantity':ticketquantity})
+    
 
-    return render(request, 'events/eventDetails.html',{'event':event})         
 
 def do_login(request):
     request_method = request.method
