@@ -154,15 +154,16 @@ def ticketDetails(request,pk):
     ticketinstance= get_object_or_404(Ticket, pk=pk)
     eventid=ticketinstance.event_id
     eventinstance = Events.objects.get(id=eventid)
+    maximumtickets=eventinstance.maximum_tickets
     eventname=eventinstance.event_title
     eventprice=eventinstance.price
     ticketquantity=ticketinstance.quantity
+    remainingtickets=maximumtickets-ticketquantity
     eventtotal=eventprice*ticketquantity
     return render(request, 'events/ticketDetails.html',{'event_name':eventname,
-        'event_price':eventprice,'event_total':eventtotal,'ticket_quantity':ticketquantity})
+        'event_price':eventprice,'event_total':eventtotal,'ticket_quantity':ticketquantity,
+        'remaining_tickets':remainingtickets})
     
-
-
 def do_login(request):
     request_method = request.method
     print('request_method = ' + request_method)

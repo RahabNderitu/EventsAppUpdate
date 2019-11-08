@@ -1,7 +1,7 @@
 {% extends "events/index.html" %}
 {% load static %}
 
-    {% block content %}
+{% block content %}
     
 
     <div class="container-fluid" style="background-color:pink;" >
@@ -87,180 +87,139 @@
           </div>
 
           <!-- Content Row -->
+        <h2 style="font-weight:bolder;text-align:center;">UPCOMING EVENTS</h2>
 
-          <div class="row">
 
-            <!-- Area Chart -->
-            <div class="col-xl-8 col-lg-7">
-              <div class="card shadow mb-4">
-                <!-- Card Header - Dropdown -->
-                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                  <h6 class="m-0 font-weight-bold text-primary"> Upcoming Events</h6>
-                  <div class="dropdown no-arrow">
-                    <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                      <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
-                    </a>
-                    <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink">
-                      <div class="dropdown-header">Dropdown Header:</div>
-                      <a class="dropdown-item" href="events/events">Event Tickets</a>
-                      <a class="dropdown-item" href="events/movies">Movie Tickets</a>
-                      <a class="dropdown-item" href="events/entertainment">Entertainment</a>
-                      <a class="dropdown-item" href="events/freEvents">Free Events</a>
-                      <div class="dropdown-divider"></div>
-                      
 
-                      <a class="dropdown-item" href="#">Get Started</a>
-                    </div>
-                  </div>
-                </div>
-                <!-- Card Body -->
-                <div class="card-body">
-                  <div class="image-area">
-                    <img class="event-type-img" src="{% static 'events/img/event1.png' %}" alt="Exploration" data-type="exploration"/>
-                     <img class="event-type-img" src="{% static 'events/img/event4.png' %}" alt="Exploration" data-type="exploration"/>
-                     <img class="event-type-img" src="{% static 'events/img/event3.png' %}" alt="Exploration" data-type="exploration"/>
-                     <img class="event-type-img" src="{% static 'events/img/event2.png' %}" alt="Exploration" data-type="exploration"/>
-                  </div>
-                </div>
-              </div>
-            </div>
+        <div class="card-deck" style="padding-left:10px;padding-right:10px;">
+  <div class="card" style="width: 18rem;">
+    <div class="embed-responsive embed-responsive-1by1">
+    <img class="card-img-top embed-responsive-item" alt="Card image cap" src="{% static 'events/img/capture(g).png' %}" /><br>
+  </div>
+    <div class="card-body">
+      <h5 class="card-title">MSK 2019 AWARDS</h5>
+      <p class="card-text">Welcome to MSK 2019 Awards.</p>
+    </div>
+    <div class="card-footer">
+      <small class="text-muted">Buy tickets now</small>
+    </div>
+  </div>
+  <div class="card" style="width: 18rem;">
+    <div class="embed-responsive embed-responsive-1by1">
+    <img class="card-img-top embed-responsive-item" alt="Card image cap" src="{% static 'events/img/capture(h).png' %}" /><br>
+  </div>
+    <div class="card-body">
+      <h5 class="card-title">Crazy Glow Fest</h5>
+      <p class="card-text">Come ready to glow.</p>
+    </div>
+    <div class="card-footer">
+      <small class="text-muted">Get your ticket now!</small>
+    </div>
+  </div>
+  <div class="card" style="width: 18rem;">
+    <div class="embed-responsive embed-responsive-1by1">
+    <img class="card-img-top embed-responsive-item"  alt="Card image cap" src="{% static 'events/img/baking.png' %}" /><br>
+  </div>
+    <div class="card-body">
+      <h5 class="card-title">Halloween Baking Classes for kids</h5>
+      <p class="card-text">Want your kids to learn how to bake? </p>
+    </div>
+    <div class="card-footer">
+      <small class="text-muted">Don't miss out</small>
+    </div>
+  </div>
+</div>   
+<br>
 
-            <!-- Pie Chart -->
-            <div class="col-xl-4 col-lg-5">
-              <div class="card shadow mb-4">
-                <!-- Card Header - Dropdown -->
-                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                  <h6 class="m-0 font-weight-bold text-primary">Movie Tickets</h6>
-                  <div class="dropdown no-arrow">
-                    <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                      <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
-                    </a>
-                    <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink">
-                      <div class="dropdown-header">Dropdown Header:</div>
-                      <a class="dropdown-item" href="events/events">Event Tickets</a>
-                      <a class="dropdown-item" href="events/movies">Movie Tickets</a>
-                      <a class="dropdown-item" href="events/entertainment">Entertainmet</a>
-                      <a class="dropdown-item" href="events/freeEvents">Free Events</a>
-                      <div class="dropdown-divider"></div>
-                      <a class="dropdown-item" href="#">Get Started</a>
-                    </div>
-                  </div>
-                </div>
-                <!-- Card Body -->
-                <div class="card-body">
-                  <div class="image-area">
-                    <img class="event-type-img" src="{% static 'events/img/movie3.png' %}" alt="Exploration" data-type="exploration"/><br>
-                    <img class="event-type-img" src="{% static 'events/img/movie4.png' %}" alt="Exploration" data-type="exploration"/>
-                  </div>
-                  <div class="mt-4 text-center small">
+  <div class="card-deck" style="padding-left:10px;padding-right:10px;">
+  <div class="card " style="width: 18rem;">
+    <div class="embed-responsive embed-responsive-1by1">
+    <img class="card-img-top embed-responsive-item" alt="Card image cap" src="{% static 'events/img/capture(a).png' %}" /><br>
+  </div>
+    <div class="card-body">
+      <h5 class="card-title">AFRO SOCIAL EVENT</h5>
+      <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+    </div>
+    <div class="card-footer">
+      <small class="text-muted">Last updated 3 mins ago</small>
+    </div>
+  </div>
+  <div class="card" style="width: 18rem;">
+    <div class="embed-responsive embed-responsive-1by1">
+    <img class="card-img-top embed-responsive-item"  alt="Card image cap" src="{% static 'events/img/movie6.png' %}" /><br>
+  </div>
+    <div class="card-body">
+      <h5 class="card-title">THE SHAFT</h5>
+      <p class="card-text">More Shaft than you can handle.</p>
+    </div>
+    <div class="card-footer">
+      <small class="text-muted">Don't miss out</small>
+    </div>
+  </div>
+  <div class="card" style="width: 18rem;">
+    <div class="embed-responsive embed-responsive-1by1">
+    <img class="card-img-top embed-responsive-item" alt="Card image cap" src="{% static 'events/img/capture(c).png' %}" /><br>
+  </div>
+    <div class="card-body">
+      <h5 class="card-title">BOMAS OF KENYA EVENTS</h5>
+      <p class="card-text">Bomas of Kenya welcomes you to its cultural dances events.</p>
+    </div>
+    <div class="card-footer">
+      <small class="text-muted">Don't miss out</small>
+    </div>
+  </div>
+</div>
 
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
 
-          <!-- Content Row -->
-          <div class="row">
+<br>
 
-            <!-- Content Column -->
-            <!-- <div class="col-lg-6 mb-4"> -->
 
-              <!-- Project Card Example -->
-              <!-- <div class="card shadow mb-4">
-                <div class="card-header py-3">
-                  <h6 class="m-0 font-weight-bold text-primary">Projects</h6>
-                </div>
-                <div class="card-body">
-                  <h4 class="small font-weight-bold">Server Migration <span class="float-right">20%</span></h4>
-                  <div class="progress mb-4">
-                    <div class="progress-bar bg-danger" role="progressbar" style="width: 20%" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"></div>
-                  </div>
-                  <h4 class="small font-weight-bold">Sales Tracking <span class="float-right">40%</span></h4>
-                  <div class="progress mb-4">
-                    <div class="progress-bar bg-warning" role="progressbar" style="width: 40%" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100"></div>
-                  </div>
-                  <h4 class="small font-weight-bold">Customer Database <span class="float-right">60%</span></h4>
-                  <div class="progress mb-4">
-                    <div class="progress-bar" role="progressbar" style="width: 60%" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"></div>
-                  </div>
-                  <h4 class="small font-weight-bold">Payout Details <span class="float-right">80%</span></h4>
-                  <div class="progress mb-4">
-                    <div class="progress-bar bg-info" role="progressbar" style="width: 80%" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"></div>
-                  </div>
-                  <h4 class="small font-weight-bold">Account Setup <span class="float-right">Complete!</span></h4>
-                  <div class="progress">
-                    <div class="progress-bar bg-success" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
-                  </div>
-                </div> -->
-              <!-- </div> -->
+<div class="card-deck" style="padding-left:10px;padding-right:10px;">
+  <div class="card" style="width: 18rem;paddi">
+    <div class="embed-responsive embed-responsive-1by1">
+    <img class="card-img-top embed-responsive-item" alt="Card image cap" src="{% static 'events/img/capture(d).png' %}" /><br>
+  </div>
+    <div class="card-body">
+      <h5 class="card-title">Nairobi Pizza Week</h5>
+      <p class="card-text">The Nairobi Pizza Week Festival is finally here.Get free pizza for every purchase and 5% refundable on payment with mpesa</p>
+    </div>
+    <div class="card-footer">
+      <small class="text-muted">Welcome to Nairobi Pizza Festival </small>
+    </div>
+  </div>
+  <div class="card" style="width: 18rem;">
+    <div class="embed-responsive embed-responsive-1by1">
+    <img class="card-img-top embed-responsive-item " alt="Card image cap"src="{% static 'events/img/capture(e).png' %}" /><br>
+  </div>
+    <div class="card-body">
+      <h5 class="card-title">Keith Powell Whisky Tasting</h5>
+      <p class="card-text">Get to taste the best whiskeys and buy at discounted prices.</p>
+    </div>
+    <div class="card-footer">
+      <small class="text-muted">Best whiskeys ever</small>
+    </div>
+  </div>
+  <div class="card" style="width: 18rem;">
+    <div class="embed-responsive embed-responsive-1by1">
+    <img class="card-img-top embed-responsive-item" alt="Card image cap" src="{% static 'events/img/capture(f).png' %}" /><br>
+  </div>
+    <div class="card-body">
+      <h5 class="card-title">Nairobi Music Awards 2019</h5>
+      <p class="card-text">Join us as we appreciate music </p>
+    </div>
+    <div class="card-footer">
+      <small class="text-muted">Rate your best musicians</small>
+    </div>
+  </div>
+</div>
 
-              <!-- Color System -->
-              <div class="row">
-                <div class="col-lg-6 mb-4">
-                  <div class="card bg-primary text-white shadow">
-                    <div class="card-body">
-                      MOVIES
-                      <div class="text-white-50 small"></div>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-lg-6 mb-4">
-                  <div class="card bg-success text-white shadow">
-                    <div class="card-body">
-                      EVENTS
-                      <div class="text-white-50 small"></div>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-lg-6 mb-4">
-                  <div class="card bg-info text-white shadow">
-                    <div class="card-body">
-                      ENTERTAINMENT
-                      <div class="text-white-50 small"></div>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-lg-6 mb-4">
-                  <div class="card bg-warning text-white shadow">
-                    <div class="card-body">
-                      FREE EVENTS
-                      <div class="text-white-50 small"></div>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-lg-6 mb-4">
-                  <div class="card bg-danger text-white shadow">
-                    <div class="card-body">
-                      SPORTS
-                      <div class="text-white-50 small"></div>
-                    </div>
-                  </div>
-                </div>
-                <!-- <div class="col-lg-6 mb-4">
-                  <div class="card bg-secondary text-white shadow">
-                    <div class="card-body">
-                      Secondary
-                      <div class="text-white-50 small">#858796</div>
-                    </div>
-                  </div>
-                </div> -->
-              </div>
+<br>
 
-            </div>
 
-           <img class="event-type-img" src="{% static 'events/img/movie4.png' %}" alt="Exploration" data-type="exploration"/>
-           <img class="event-type-img" src="{% static 'events/img/movie4.png' %}" alt="Exploration" data-type="exploration"/>
-           <img class="event-type-img" src="{% static 'events/img/movie4.png' %}" alt="Exploration" data-type="exploration"/>
-           <img class="event-type-img" src="{% static 'events/img/movie4.png' %}" alt="Exploration" data-type="exploration"/>
-           <img class="event-type-img" src="{% static 'events/img/movie3.png' %}" alt="Exploration" data-type="exploration"/>
-           <img class="event-type-img" src="{% static 'events/img/movie3.png' %}" alt="Exploration" data-type="exploration"/>
-           
-          </div>
 
-        </div>
 
-    {% endblock %}
+              
+{% endblock %}
 
     <!-- Sidebar -->
    

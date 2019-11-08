@@ -4,6 +4,7 @@
 <!DOCTYPE html>
 <html>
    <head>
+
       <title></title>
    </head>
    <body>
@@ -48,10 +49,18 @@
                <input type="total" class="form-control" name="total" value="0">
             </div>
             <div>
-               <!-- <p>PS: There are only <strong>10</strong> ticket still available.</p> -->
+               {% if remaining_tickets < 10 %} 
+               <p>PS: Tickets remaining are less than 10.</p>
+               {% elif num == 0 %}
+               <h5>Tickets are sold out</h5> 
+               <button type="submit"class="btn btn-success"name="buyticket"{% if not enable %}disabled{%endif%}/>BUY TICKET</button>
+               {% else %}
+               <h5>Tickets are available</h5>
+               {% endif %}
                Buy ticket for {{ event.event_title }}
                <br><br>
-               <button type="submit" class="btn btn-success"/>BUY TICKET</button>
+               <button type="submit" class="btn btn-success" name="buyticket"/>BUY TICKET</button>
+               <a href="#" class="btn btn-success "><span class="glyphicon glyphicon-shopping-cart"></span>ADD TO  CART</a>
                <!-- <a  href="/events/ticketDetails/{{events.id}}"class="btn btn-dark">BUY TICKET</a -->
             </div>
          </form>

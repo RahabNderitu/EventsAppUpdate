@@ -20,9 +20,9 @@
             
         </div>
         <br>
-        <div class="form-group">
+        <div class="form-group" style="width: 20%">
         <label class="form-label" >Choose a picture:</label>
-        <input type="file" id="avatar" name="picture" >
+        <input type="file" class="form-control" id="avatar" name="picture" >
         </div>
         <!-- <img class="event-type-img" src="{% static 'events/img/event1.png' %}" alt="events" data-type="events"/><br><br> -->
 
@@ -31,34 +31,34 @@
             <input type="text" class="form-control" name="event_location" value="{{event.event_location}}" placeholder="Event Location" type="text">
         </div>
         <br>
-        <br>
-        <div>  
-            <label class="event-start-date">Start Date:</label>
-            <input class="event-start-date"type="date"name="event_start_date" value="{{event.event_start_date}}" />
+        
+        <div class="form-group"style="width: 20%">  
+            <label class="form-label">Start Date:</label>
+            <input class="form-control"type="date"name="event_start_date" value="{{event.event_start_date}}" />
             <br>
+            
+            <label class="form-label">Start Time:</label>
+            <input class="form-control"type="time"name="event_start_time" value="{{event.event_start_time}}"/>
             <br>
-            <label class="event-start-time">Start Time:</label>
-            <input class="event-start-time"type="time"name="event_start_time" value="{{event.event_start_time}}"/>
+            
+            <label for="form-label">End Date:</label>
+            <input class="form-control" type="date" name="event_end_date" value="{{event.event_end_date}}" />
             <br>
-            <br>
-            <label for="event-end-date">End Date:</label>
-            <input class="event-end-date" type="date" name="event_end_date" value="{{event.event_end_date}}" />
-            <br>
-            <br>
-            <label class="event-end-time">End Time:</label>
-            <input class="event-start-time" type="time"  name="event_end_time" value="{{event.event_end_time}}" />
+            
+            <label class="form-label">End Time:</label>
+            <input class="form-control" type="time"  name="event_end_time" value="{{event.event_end_time}}" />
                 
         </div>
         <br>
-        <br>
-        <div class="event-label cover-heading">
+        
+        <div class="event-label cover-heading" >
             <h2 class="event-label cover-heading">Description</h2>
         </div>
         
-        <textarea class="event-description" name="event_description" value="{{event.event_description}}" cols="75" rows="5">{{event.event_description}}</textarea>
+        <textarea class="event-description" style="width: 20%" name="event_description" value="{{event.event_description}}" cols="75" rows="5">{{event.event_description}}</textarea>
 
         <br>
-      
+        <br>
        <button type="submit" class="btn btn-lg btn-warning">Update Event</button>
 
     </form>

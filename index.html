@@ -83,12 +83,9 @@
         <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">Event Actions:</h6>
-            <a class="collapse-item" href="events/createEvents">Create Events</a>
-            <a class="collapse-item" href="events/eventList"> Event List</a>
-            <a class="collapse-item" href="events/createEvents"> View Events</a>
-            <a class="collapse-item" href="events/updateEvents">Update Events</a>
-            <a class="collapse-item" href="events/deleteEvents">Delete Events</a>
-            <a class="collapse-item" href="">Other</a>
+            <a class="collapse-item" href="/events/forms">Create Events</a>
+            <a class="collapse-item" href="/events/eventList"> Event List</a>
+  
           </div>
         </div>
       </li>
@@ -358,6 +355,14 @@
         {% block content %}
 
     {% endblock %}
+    <br>
+
+
+
+
+
+
+
         <!-- End of Topbar -->
 
         <!-- Begin Page Content -->
@@ -368,8 +373,17 @@
       <!-- End of Main Content -->
 
       <!-- Footer -->
-      <footer class="sticky-footer bg-white">
+
+      <footer class="sticky-footer" style="background-color:black;">
         <div class="container my-auto">
+          
+            <div class="navbar">
+            <a href="/events/dashboard">DASHBOARD</a>
+            <a href="/events/forms">CREATE EVENTS</a>
+            <a href="/events/eventList">EVENT LIST</a>
+            <a href="#contact">CONTACT US</a>
+          </div>
+          
           <div class="copyright text-center my-auto">
             <span>Copyright &copy; Your Website 2019</span>
           </div>
