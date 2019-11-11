@@ -12,6 +12,11 @@
                
                <h5 style="font-weight:bolder;">TICKET SUCCESSFULLY BOUGHT BY :{{ request.user.username }}</h5>
                <div class="card" style="width: 30rem;">
+                  {% if event.picture %}
+                  <div class="embed-responsive embed-responsive-1by1">
+                     <img class="card-img-top embed-responsive-item"  alt="Card image cap" src="{{ event.picture.url}}"> 
+                  </div>
+                  {% endif %}
                   <div class="card-body">
                      <h5 class="card-title"style="font-size:18px;font-weight:bold;">TICKET BOUGHT FOR:<br>{{event_name}}
                         EVENT</h5><br>

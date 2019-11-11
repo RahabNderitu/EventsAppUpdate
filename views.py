@@ -162,7 +162,24 @@ def ticketDetails(request,pk):
     eventtotal=eventprice*ticketquantity
     return render(request, 'events/ticketDetails.html',{'event_name':eventname,
         'event_price':eventprice,'event_total':eventtotal,'ticket_quantity':ticketquantity,
-        'remaining_tickets':remainingtickets})
+        'remaining_tickets':remainingtickets,'event':eventinstance})
+
+@login_required
+def shoppingcart(request,pk):
+    ticketinstance= get_object_or_404(Ticket, pk=pk)
+    eventid=ticketinstance.event_id
+    eventinstance = Events.objects.get(id=eventid)
+    eventname=eventinstance.event_title
+    eventprice=eventinstance.price
+    ticketquantity=ticketinstance.quantity
+    eventtotal=eventprice*ticketquantity
+    context= {'event': eventinstance }
+    the_title=eventinstance.event_title
+    print("the_title:",the_title)
+    return render(request, 'events/shoppingcart.html',{'event_name':eventname,
+        'event_price':eventprice,'event_total':eventtotal,'ticket_quantity':ticketquantity,'event':eventinstance})
+
+    
     
 def do_login(request):
     request_method = request.method
@@ -221,6 +238,31 @@ def do_register(request):
 def logout(request):
     auth.logout(request)
     return render(request,'events/login.html')
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     
 
 # class EventList(ListView):

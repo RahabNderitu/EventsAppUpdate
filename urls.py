@@ -23,7 +23,9 @@ urlpatterns = [
     path('updateEvents/<int:pk>', views.updateEvents, name='updateEvents'),
     path('deleteEvents/<int:pk>', views.deleteEvents, name='deleteEvents'),
     path('eventDetails/<int:pk>', views.eventDetails, name='eventDetails'),
-  
+    path('ticketDetails/<int:pk>', views.ticketDetails, name='ticketDetails'),
+    path('shoppingcart/<int:pk>', views.shoppingcart, name='shoppingcart'),
+    
     ]
 
 
