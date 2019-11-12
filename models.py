@@ -22,6 +22,14 @@ class Ticket(models.Model):
     ticketid = models.IntegerField(null=True)
 
 
+class Cart(models.Model):
+    price = models.IntegerField(null=True)
+    cartquantity= models.IntegerField(null=True)
+
+
+
+
+
 
   
 

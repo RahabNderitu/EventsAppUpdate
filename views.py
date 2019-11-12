@@ -11,7 +11,7 @@ from django.contrib.auth import logout
 from django.views.generic import ListView, DetailView 
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 # from .models import events
-from events.models import Events,Ticket
+from events.models import Events,Ticket,Cart
 from django.urls import reverse_lazy
 from .forms import EventsForm
 from.forms import TicketForm
@@ -159,6 +159,14 @@ def ticketDetails(request,pk):
     eventprice=eventinstance.price
     ticketquantity=ticketinstance.quantity
     remainingtickets=maximumtickets-ticketquantity
+    if remainingtickets < 10:
+        print ("Tickets remaining are less than 10")
+    elif remainingtickets==0:
+            print ("SOLD OUT")
+    else:
+        print("INVALID") 
+
+    print("remainingtickets:",remainingtickets)
     eventtotal=eventprice*ticketquantity
     return render(request, 'events/ticketDetails.html',{'event_name':eventname,
         'event_price':eventprice,'event_total':eventtotal,'ticket_quantity':ticketquantity,

@@ -25,7 +25,7 @@ urlpatterns = [
     path('eventDetails/<int:pk>', views.eventDetails, name='eventDetails'),
     path('ticketDetails/<int:pk>', views.ticketDetails, name='ticketDetails'),
     path('shoppingcart/<int:pk>', views.shoppingcart, name='shoppingcart'),
-    
+
     ]
 
 

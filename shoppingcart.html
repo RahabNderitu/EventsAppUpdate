@@ -5,71 +5,38 @@
 <html>
    <head>
       <title></title>
+      <style type="text/css">
+      .form-inline{
+       margin-right:4px;}
+      </style>
    </head>
    <body>
 <center>
 <h2>MY SHOPPING CART </h2>
-<div class="cart-gd">
-  
-   <div class="cart-header" id="{{item.id}}" >
-      <a href="#" class="close1 deleteItem" data-item-id="{{item.id}}"> </a>
-      <div class="cart-sec simpleCart_shelfItem">
-         <div class="cart-item cyc">
-            <img src="{{events.picture.url}}" class="img-responsive" alt=""/>
-         </div>
-         <h3>{{event_name}}</h3>
-         <form name="ticket_form" method="POST" >
-            {% csrf_token %}  
-            <div class="form-group" style="width: 50%">
-               <label class="form-label">Price</label>
-               <input type="price" class="form-control" name="price" value="{{event_price}}" >
-            </div>
-            <div class="form-group" style="width: 50%">
-               <label class="form-label">Quantity</label>
-               <input type="number" class="form-control" name="quantity" value="{{ticket_quantity}}" >
-            </div>
-            <div class="form-group"style="width: 50%" >
-               <label class="form-label">Total</label>
-               <input type="total" class="form-control" name="total" value="{{event_total}}">
-            </div>
-         <div class="clearfix"></div>
-      </div>
+<form class="form-inline">
+   <div >
+   <label class="form-label">Event Name</label>
+  <input type="name" class="form-control" name="price" value="{{event_name}}" disabled>
+  </div>
+  <div>
+  <label class="form-label">Ticket Price</label>
+  <input type="price" class="form-control" name="price" value="{{event_price}}" disabled>
+  </div>
+  <div>
+  <label class="form-label">Quantity</label>
+  <input type="number" class="form-control" name="quantity" value="{{ticket_quantity}}" >
+  </div>
+   <div>
+  <label class="form-label">Total</label>
+  <input type="total" class="form-control" name="total" value="{{event_total}}" disabled>
    </div>
-</div>
-
-<!-- <table class="table">
-  <thead>
-    <tr>
-      <th scope="col">#</th>
-      <th scope="col">Event Name</th>
-      <th scope="col">Ticket Price</th>
-    </tr>
-  </thead>
-  <tbody>
-    {% for product in cart.products.all %}
-    <tr>
-      <th scope="row">{{ forloop.counter }}</th>
-      <td>{{ event_name }} <small><a href="#">Remove</a></small></td>
-      <td>{{ event_price }}</td>
-    </tr>
-    {% endfor %}
-    <tr>
-      <td colspan="2"></td>
-      <td><b>Subtotal</b>  {{ cart.subtotal }}</td>
-    </tr>
-    <tr>
-      <td colspan="2"></td>
-      <td><b>Total</b> {{ cart.total }}</td>
-    </tr>
-  </tbody>
-</table>
-   -->
-   <div style="margin-top: 50px; text-align: center;">
-      <input class="btn btn-primary" type="submit" value="Remove From Cart" /> 
-      <br><br><br> 
-      <a href="/checkout" class="btn btn-primary">Buy Items</a>
+  <!-- <button type="submit" class="btn btn-primary mb-2">Submit</button> -->
+   <div>
+   <input class="btn btn-primary" type="submit" value="Remove From Cart" /> 
    </div>
-
-</center>
-
+    
+      <!-- <a href="/checkout" class="btn btn-primary">Buy Items</a> -->
+ 
+</form>
+</center> 
 {% endblock %}

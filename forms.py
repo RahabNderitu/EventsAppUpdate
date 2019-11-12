@@ -1,6 +1,6 @@
 from django import forms
 
-from .models import Events,Ticket
+from .models import Events,Ticket,Cart
 
 class EventsForm(forms.ModelForm):
 
@@ -15,7 +15,12 @@ class TicketForm(forms.ModelForm):
 		model = Ticket
 		fields = ( 'user_name', 'event', 'quantity','ticketid')
 
-		
+class CartForm(forms.ModelForm):
+	class Meta:
+		model = Cart
+		fields = ('price','cartquantity')
+
+
 			
 
 
