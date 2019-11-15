@@ -42,32 +42,23 @@
             </div>
             <div class="form-group" style="width: 50%">
                <label class="form-label">Quantity</label>
-               <input type="number" class="form-control" name="quantity" >
+               <input type="number" class="form-control" name="quantity" required>
                <h5>{{error_text}}</h5>
                <h5>{{error_message}}</h5>
                <h5>{{error}}</h5>
-
+               <h5>{{raise_error}}</h5>
+               
             </div>
             <div class="form-group"style="width: 50%" >
                <label class="form-label">Total</label>
                <input type="total" class="form-control" name="total" value="0" disabled>
             </div>
             <div>
-               {% if remaining_tickets < 10 %} 
-               <p>PS: Tickets remaining are less than 10.</p>
-               {% elif remaining_tickets == 0 %}
-               <h5>Tickets are sold out</h5> 
-               <button type="submit"class="btn btn-success"name="buyticket"{% if not enable %}disabled{%endif%}/>BUY TICKET</button>
-               {% else %}
-               Buy ticket for {{ event.event_title }}
-               <br><br>
+               <h1>{{sold_out}}</h1>
+               <h1>{{message}}</h1>
+               
                <button type="submit" class="btn btn-success" name="buyticket"/>BUY TICKET</button>
                <a  href="/events/shoppingcart"class="btn btn-dark">ADD TO CART</a>
-               
-               {% endif %}
-               
-               
-               
                
             </div>
          </form>
