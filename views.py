@@ -140,57 +140,63 @@ def eventDetails(request, pk):
         print("remaining tickets:",remainingtickets)
 
     if request.method == 'GET':
-        context= {'event': eventinstance }
-        return render(request, 'events/eventDetails.html', context)
+            maximumtickets=eventinstance.maximum_tickets
+            remainingtickets=maximumtickets-boughttickets
+            context= {'event': eventinstance }
+            if remainingtickets < 10:
+                context= {'event': eventinstance ,'message':'Tickets remaining are less than 10'}
+                print("Tickets remaining are less than 10")
+                return render(request, 'events/eventDetails.html',context)
+            elif remainingtickets<=1:
+                print("Tickets Sold Out")
+                return render(request, 'events/eventDetails.html',context)
+            else:
+                return render(request, 'events/eventDetails.html', context)
+        
     else: 
         context= {'event': eventinstance }
         the_title=eventinstance.event_title
         user_id=request.user.id
         ticketquantity = int(request.POST.get('quantity'))
+        maximumtickets=eventinstance.maximum_tickets
+        remainingtickets=maximumtickets-boughttickets
         print("request.POST:",request.POST)
         print("ticketquantity:",ticketquantity)
         if ticketquantity > 5:
-            context= {'event': eventinstance }
-            error_json = {'error_text': 'Amount of tickets bought cannot be more than  5.'}
+            print("Tickets bought are more than 5:")
+            error_json = {'event': eventinstance ,'error_text': 'Amount of tickets bought cannot be more than  5.'}
             return render(request, 'events/eventDetails.html', error_json,context)
             # print("Amount of tickets bought cannot be more than  5:",int(ticketquantity))
         elif ticketquantity <= 0:
-            context= {'event': eventinstance }
-            error_json = {'error_message': 'You cannot buy tickets less than or equal to 0.'}
+            print("You cannot buy 0 tickets or negative number of tickets")
+            error_json = {'event': eventinstance,'error_message': 'You cannot buy tickets less than or equal to 0.'}
             return render(request, 'events/eventDetails.html', error_json,context)
             # print("You cannot buy 0 tickets")
-        elif remainingtickets < 10:
-            context= {'event': eventinstance }
-            message = {'message':'Tickets remaining are less than 10' }
-            return render(request, 'events/eventDetails.html',messsage,context)
-        elif remainingtickets==0:
-            context= {'event': eventinstance }
-            error_json = {'sold_out': 'Tickets Sold Out!.'}
-            return render(request, 'events/eventDetails.html',error_json,context)    
+            
+        elif remainingtickets<=1:
+            print("Tickets are sold out")
+            error_json = {'event': eventinstance ,'sold_out': 'Tickets Sold Out!.'}
+            return render(request, 'events/eventDetails.html',error_json)    
+        elif remainingtickets < ticketquantity:
+            print("Tickets remaining are less than quantity you want to buy")
+            message = {'event': eventinstance ,'less_tickets': 'Tickets remaining are less than quantity you want to buy.'}
+            return render(request, 'events/eventDetails.html',message,context)
         else:
             newticket=Ticket()
             newticket.event=eventinstance
             newticket.user_name=request.user
             newticket.quantity=int(ticketquantity)
-            if remainingtickets < ticketquantity:
-                context= {'event': eventinstance }
-                message = {'less_tickets': 'Tickets remaining are less than quantity you want to buy.'}
-                return render(request, 'events/eventDetails.html',message,context)
-            elif remainingtickets > ticketquantity:
-                context= {'event': eventinstance }
-                return render(request, 'events/eventDetails.html',context)
-            else:
-                newticket.save()
-                ticketid= newticket.id
-                eventid=newticket.event_id
-                ticketprice = eventinstance.price
-                print("ticketid:",ticketid)
-                print("ticketprice:",ticketprice)
-                print("pk:",pk)
-                print("the_title:",the_title)
-                print("user_id:",user_id)
-                print("ticketquantity:",ticketquantity)
-                return redirect('/events/ticketDetails/'+ str(ticketid))
+            newticket.save()
+            ticketid= newticket.id
+            eventid=newticket.event_id
+            ticketprice = eventinstance.price
+            print("ticketid:",ticketid)
+            print("ticketprice:",ticketprice)
+            print("pk:",pk)
+            print("the_title:",the_title)
+            print("user_id:",user_id)
+            print("ticketquantity:",ticketquantity)
+            return redirect('/events/ticketDetails/'+ str(ticketid))
 
 
 def ticketDetails(request,pk):
