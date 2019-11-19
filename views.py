@@ -15,6 +15,8 @@ from events.models import Events,Ticket,Cart
 from django.urls import reverse_lazy
 from .forms import EventsForm
 from.forms import TicketForm
+from django.core.mail import send_mail
+from django.conf import settings
 
 
 
@@ -228,6 +230,19 @@ def ticketDetails(request,pk):
     return render(request, 'events/ticketDetails.html',{'event_name':eventname,
     'event_price':eventprice,'event_total':eventtotal,'ticket_quantity':ticketquantity,
     'remaining_tickets':remainingtickets,'event':eventinstance})
+
+
+def email(request):
+    # request_method = request.method
+    # if request_method == 'POST':
+        subject = 'Thank you for buying our tickets'
+        message = ' it  means so much to us '
+        email_from = settings.EMAIL_HOST_USER
+        recipient_list = ['rahabnderitu88@gmail.com']
+        send_mail( subject, message, email_from, recipient_list )
+        print("Email sent")
+        return redirect('/events/ticketDetails/')
+
 
 @login_required
 def shoppingcart(request,pk):

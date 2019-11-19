@@ -17,6 +17,7 @@ urlpatterns = [
     path('movies', views.movies, name='movies'),
     path('events', views.events, name='events'),
     path("logout", views.logout, name="logout"),
+    path("email", views.email, name="email"),
 
     path('eventList', views.eventList, name='eventList'),
     path('forms', views.showform, name='forms'),
