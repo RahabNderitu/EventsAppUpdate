@@ -7,22 +7,40 @@
       <title>Email form</title>
    </head>
    <body>
-      <h3 class="display-3" style="background-color:#000000;color:#FFFF99;text-align:center;">Ticket Details </h3>
-      <div class="container" style="padding-left:2px;padding-right:100px;padding-top:20px;padding-bottom:100px;"> 
+      <h3 class="display-3" style="background-color:#000000;color:#FFFF99;text-align:center;">Email </h3>
+      <div class="container" style="padding-left:400px;padding-right:100px;padding-top:20px;padding-bottom:100px;"> 
       <div class="row">
       
       <div class="col-sm-12">
-         <h5 style="font-weight:bolder;">Mail Ticket Details To:</h5>
-      <form  method="POST" enctype="text/plain">
+         <h2>{{email}}</h2>
+         <h5 style="font-weight:bolder;">Send Email :</h5>
+      <form  method="POST" enctype="multipart/form-data">
          {% csrf_token %} 
-      Name:<br>
-      <input type="text" name="name" value="{{ request.user.username }}"><br>
-      E-mail:<br>
-      <input type="text" name="mail" value="{{request.user.email}}"><br>
-      <br>
-      <input type="submit" value="Email Ticket">
+      
+      
+      <div class="form-group"style="width: 50%">
+            <label class="form-label" >E-mail</label>
+            <input type="text" class="form-control" name="email" value="{{request.user.email}}" placeholder="E-mail">
+        </div> 
+      <div class="form-group"style="width: 50%">
+            <label class="form-label" >Subject</label>
+            <textarea name="subject" class="form-control" required></textarea>
+        </div> 
+      <div class="form-group">
+         <label for="exampleFormControlFile1">Upload file</label>
+         <input type="file" class="form-control-file" name="document" required>
+      </div>
+      <div class="form-group"style="width: 50%">
+      <label class="form-label" >Message</label>
+      <textarea name="message" class="form-control" required></textarea>  
+      </div>    
+      <!-- <button type="submit" class="btn btn-success" name="buyticket"/>Send Email</button> -->
 
       </form>
+      <div class="form-group">
+            <input type="submit" value="Send Email">
+           
+        </div>
    </div>
    </div>
 </div>

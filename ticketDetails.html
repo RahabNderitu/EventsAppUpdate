@@ -4,11 +4,11 @@
 <!DOCTYPE html>
 <html>
    <head>
-      <title></title>
+      <title>Ticket Details</title>
    </head>
    <body>
       <h3 class="display-3" style="background-color:#000000;color:#FFFF99;text-align:center;">Ticket Details </h3>
-      <div class="container" style="padding-left:2px;padding-right:100px;padding-top:20px;padding-bottom:100px;"> 
+      <div class="container" style="padding-left:360px;padding-right:100px;padding-top:20px;padding-bottom:100px;"> 
       <div class="row">
             <div class="col-sm-8" >
                <h5 style="font-weight:bolder;">TICKET SUCCESSFULLY BOUGHT BY :{{ request.user.username }}</h5>
@@ -26,9 +26,11 @@
                      <p class="card-text" style="font-weight:bolder;">TOTAL AMOUNT PAID:{{event_total}}</p>
                   </div>
                </div>
+               <br>
+               <a  href="/events/email"class="btn btn-dark"> Email Ticket Details</a>
             </div>   
       
-      <div class="col-sm-4">
+    <!--   <div class="col-sm-4">
          <h5 style="font-weight:bolder;">Mail Ticket Details To:</h5>
       <form  method="POST" enctype="text/plain">
          {% csrf_token %} 
@@ -37,10 +39,11 @@
       E-mail:<br>
       <input type="text" name="mail" value="{{request.user.email}}"><br>
       <br>
-      <input type="submit" value="Email Ticket">
+
+      <button type="submit" class="btn btn-success" name="buyticket"/>Send Email</button>
 
       </form>
-   </div>
+   </div> -->
    </div>
 </div>
    </body>

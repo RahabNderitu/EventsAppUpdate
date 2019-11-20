@@ -1,38 +1,31 @@
-from django.urls import path
-from django.conf.urls import url
-from . import views
-from django.conf.urls.static import static
+"""eventsapp URL Configuration
+
+The `urlpatterns` list routes URLs to views. For more information please see:
+    https://docs.djangoproject.com/en/2.2/topics/http/urls/
+Examples:
+Function views
+    1. Add an import:  from my_app import views
+    2. Add a URL to urlpatterns:  path('', views.home, name='home')
+Class-based views
+    1. Add an import:  from other_app.views import Home
+    2. Add a URL to urlpatterns:  path('', Home.as_view(), name='home')
+Including another URLconf
+    1. Import the include() function: from django.urls import include, path
+    2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
+"""
+# from django.contrib import admin
+# from django.urls import include, path
+from django.contrib import admin
+from django.conf import settings # new
+from django.urls import path, include # new
+from django.conf.urls.static import static # new
 
 
-app_name = 'events'
+
 urlpatterns = [
-    path('', views.index, name='index'),
-    path('register', views.register, name='register'),
-    path('dashboard', views.dashboard, name='dashboard'),
-    path('forgotpassword', views.forgotpassword, name='forgotpassword'),
-    path('login', views.login, name='login'),
-    path('do_login', views.do_login, name='do_login'),
-    path('do_register', views.do_register, name='do_register'),
-    path('createEvents', views.createEvents, name='createEvents'),
-    path('movies', views.movies, name='movies'),
-    path('events', views.events, name='events'),
-    path("logout", views.logout, name="logout"),
-    path("email", views.email, name="email"),
-
-    path('eventList', views.eventList, name='eventList'),
-    path('forms', views.showform, name='forms'),
-    path('updateEvents/<int:pk>', views.updateEvents, name='updateEvents'),
-    path('deleteEvents/<int:pk>', views.deleteEvents, name='deleteEvents'),
-    path('eventDetails/<int:pk>', views.eventDetails, name='eventDetails'),
-    path('ticketDetails/<int:pk>', views.ticketDetails, name='ticketDetails'),
-    path('shoppingcart/<int:pk>', views.shoppingcart, name='shoppingcart'),
-
-    ]
-
-
-
-
-
-
-
-
+    path('events/', include('events.urls')),
+    path('admin/', admin.site.urls),
+    path('/', include('django.contrib.auth.urls'))  
+]
+if settings.DEBUG: # new
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

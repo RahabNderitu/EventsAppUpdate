@@ -1,6 +1,6 @@
 from django import forms
 
-from .models import Events,Ticket,Cart
+from .models import Events,Ticket,Cart,Mails
 
 class EventsForm(forms.ModelForm):
 
@@ -21,6 +21,10 @@ class CartForm(forms.ModelForm):
 		fields = ('price','cartquantity')
 
 
+class EmailForm(forms.ModelForm):
+	class Meta:
+		model = Mails
+		fields = ('email','subject','message','document')
 			
 
 

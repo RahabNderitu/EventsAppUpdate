@@ -17,6 +17,9 @@ from .forms import EventsForm
 from.forms import TicketForm
 from django.core.mail import send_mail
 from django.conf import settings
+from django.core.mail import EmailMessage
+from django.core.files.storage import FileSystemStorage
+from .forms import EmailForm
 
 
 
@@ -192,6 +195,12 @@ def eventDetails(request, pk):
             ticketid= newticket.id
             eventid=newticket.event_id
             ticketprice = eventinstance.price
+
+            subject = 'Thank you for buying our tickets'
+            message = '  It  means so much to us {{event_name}} ,{{event_price}},{{event_total}},{{ticket_quantity}}{{remaining_tickets}},{{event}}'
+            email_from = settings.EMAIL_HOST_USER
+            recipient_list = ['rahabnderitu88@gmail.com']
+            send_mail( subject, message, email_from, recipient_list )
             print("ticketid:",ticketid)
             print("ticketprice:",ticketprice)
             print("pk:",pk)
@@ -202,46 +211,70 @@ def eventDetails(request, pk):
 
 
 def ticketDetails(request,pk):
-    # eventinstance= get_object_or_404(Events, pk=pk)
-    # context= {'event':eventinstance}
-    ticketinstance= get_object_or_404(Ticket, pk=pk)
-    eventid=ticketinstance.event_id
-    quantity=ticketinstance.quantity
-    ticket_set = Ticket.objects.filter(id=eventid)
-    for ticket in ticket_set:
+    request_method = request.method
+    if request_method == 'GET':
+        ticketinstance= get_object_or_404(Ticket, pk=pk)
+        eventid=ticketinstance.event_id
+        quantity=ticketinstance.quantity
+        ticket_set = Ticket.objects.filter(id=eventid)
+        for ticket in ticket_set:
+            print("quantity:",quantity)
+
+        eventinstance = Events.objects.get(id=eventid)
+        maximumtickets=eventinstance.maximum_tickets
+        eventname=eventinstance.event_title
+        eventprice=eventinstance.price
+        ticketquantity=ticketinstance.quantity
+        remainingtickets=maximumtickets-ticketquantity
+        print("ticket_set:",ticket_set)
+        print("eventid:",eventid)
         print("quantity:",quantity)
-    
-    eventinstance = Events.objects.get(id=eventid)
-    maximumtickets=eventinstance.maximum_tickets
-    eventname=eventinstance.event_title
-    eventprice=eventinstance.price
-    ticketquantity=ticketinstance.quantity
-    remainingtickets=maximumtickets-ticketquantity
-    # if remainingtickets < 10:
-    #     print ("Tickets remaining are less than 10")
-    # elif remainingtickets==0:
-    #     print ("SOLD OUT")
-    # else:
-    print("ticket_set:",ticket_set)
-    print("eventid:",eventid)
-    print("quantity:",quantity)
-    print("remainingtickets:",remainingtickets)
-    eventtotal=eventprice*ticketquantity
-    return render(request, 'events/ticketDetails.html',{'event_name':eventname,
-    'event_price':eventprice,'event_total':eventtotal,'ticket_quantity':ticketquantity,
-    'remaining_tickets':remainingtickets,'event':eventinstance})
-
-
-def email(request):
-    # request_method = request.method
-    # if request_method == 'POST':
+        print("remainingtickets:",remainingtickets)
+        eventtotal=eventprice*ticketquantity
+        return render(request, 'events/ticketDetails.html',{'event_name':eventname,
+        'event_price':eventprice,'event_total':eventtotal,'ticket_quantity':ticketquantity,
+        'remaining_tickets':remainingtickets,'event':eventinstance})
+    else:
         subject = 'Thank you for buying our tickets'
         message = ' it  means so much to us '
         email_from = settings.EMAIL_HOST_USER
         recipient_list = ['rahabnderitu88@gmail.com']
         send_mail( subject, message, email_from, recipient_list )
         print("Email sent")
-        return redirect('/events/ticketDetails/')
+        return render(request,'events/email.html')
+
+
+# def email(request):
+#     context={'email': 'Email sent successfully'}
+#     subject = 'Thank you for buying our tickets'
+#     message = ' it  means so much to us '
+#     email_from = settings.EMAIL_HOST_USER
+#     recipient_list = ['rahabnderitu88@gmail.com']
+#     send_mail( subject, message, email_from, recipient_list )
+#     print("Email sent")
+#     return render(request,'events/email.html',context)
+
+def email(subject,message):
+    if request.method == "POST":
+        form = EmailForm(request.POST,request.FILES)
+        document=request.FILES["document"]
+        if form.is_valid():
+            print("FORM IS VALID")
+            form.save()
+            print("FORM SAVED")
+            email = request.POST.get('email')
+            subject = request.POST.get('subject')
+            message = request.POST.get('message')
+            document = request.FILES.get('document')
+            email_from = settings.EMAIL_HOST_USER
+            recipient_list = [rahabnderitu88@gmail.com]
+            email = EmailMessage(subject,message,email_from,recipient_list)
+            base_dir = 'media/documents/'
+            email.attach_file('media/documents/')
+            email.send()
+    else:
+        form = EmailForm()
+        return render(request,'events/email.html', {'form': form})
 
 
 @login_required
